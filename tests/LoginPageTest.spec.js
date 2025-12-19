@@ -5,6 +5,7 @@ test.describe.configure({mode:'serial'});
 
 
 test.describe('Login Tests',()=>{
+    /** @type {LoginPage} */
     let login;
     test.beforeEach(async ({page})=>{
         login = new LoginPage(page);
@@ -45,9 +46,10 @@ test.describe('Login Tests',()=>{
 
 // -------------------- SIGNUP TESTS ------------------------
 test.describe('Signup Tests',()=>{
+    /** @type {LoginPage} */
     let signup;
     test.beforeEach(async ({page})=>{
-        signup = new LoginPage(page);
+        //const signup = new LoginPage(page);
         await signup.gotoLoginPage();
         await (await signup.signupbutton()).click();
     })
@@ -57,6 +59,7 @@ test.describe('Signup Tests',()=>{
     })
     
     test('Check user can signup without first name',async({page})=>{
+        //const signup = new LoginPage(page);
         await signup.lastname('Bhoiyan');
         await signup.signupemail('zysxx@gmail.com');
         await signup.signuppassword('Tanjil123@#?');
