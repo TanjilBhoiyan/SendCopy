@@ -1,6 +1,4 @@
 exports.LinkedinLeadsPage = class LinkedinLeadsPage{
-
-
     constructor(page){
         this.page = page;
         this.leadsPageLocator = '.lucide.lucide-circle-user-round';
@@ -9,8 +7,10 @@ exports.LinkedinLeadsPage = class LinkedinLeadsPage{
         this.noresultLocator=page.getByText('No results.');
 
 
-        this.alllistName = '[data-slot="table-body"]>[data-slot="table-row"]';
-        this.leadsnumber= 'td:nth-child(3)>div>span.text-sm.font-medium';
+        this.alllistnameLocator = '[data-slot="table-body"]>[data-slot="table-row"]';
+        this.leadsnumberLocator= 'td:nth-child(3)>div>span.text-sm.font-medium';
+
+        this.addleadsButtonLocator='//button[normalize-space()="Add leads"]';
 
     }
     async linkedinleadLink(){
@@ -26,10 +26,13 @@ exports.LinkedinLeadsPage = class LinkedinLeadsPage{
         return this.noresultLocator;
     }
     allListname(){
-        return this.page.locator('[data-slot="table-body"]>[data-slot="table-row"]');
+        return this.page.locator(this.alllistnameLocator);
     }
     leadNumber(row){
-        return row.locator(this.leadsnumber);
+        return row.locator(this.leadsnumberLocator);
+    }
+    async addleadsbutton(){
+        await this.page.locator(this.addleadsButtonLocator).click();
     }
 
 }
