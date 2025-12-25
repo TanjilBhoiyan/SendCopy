@@ -3,11 +3,17 @@ import { LoginPage } from '../pages/LoginPage';
 import { LinkedinLeadsPage } from '../pages/LinkedinLeadsPage';
 import { GenerateLeadsPage } from '../pages/GenerateLeadsPage';
 import { LinkedInSearchBarPage } from '../pages/LinkedInSearchBarPage';
-import { LinkedinEventAttendeesPage} from '../pages/LinkedInEventAttendeesPage'
+import { LinkedinEventAttendeesPage} from '../pages/LinkedInEventAttendeesPage';
+import { LinkedinSearchCompanies } from '../pages/LinkedInSearchCompaniesPage';
+import { ImprtFromCSVPage } from '../pages/ImportFromCSVPage';
 
 test.describe.configure({mode:'serial'});
 
 test.describe('Linkedin Leads Test',()=>{
+    /**@type {ImprtFromCSVPage} */
+    let imprtfromcsvpage;
+    /**@type {LinkedinSearchCompanies} */
+    let linkedinsearchcompanies;
     /**@type {LinkedinEventAttendeesPage} */
     let linkedineventattendees;
     /** @type {LinkedinLeadsPage} */
@@ -28,12 +34,14 @@ test.describe('Linkedin Leads Test',()=>{
         generateLeads = new GenerateLeadsPage(page);
         linkedinsearchbar = new LinkedInSearchBarPage(page);
         linkedineventattendees = new LinkedinEventAttendeesPage(page);
+        linkedinsearchcompanies = new LinkedinSearchCompanies(page);
+        imprtfromcsvpage = new ImprtFromCSVPage(page);
     })
     test('Verify Succssful lead import from LinkedIn Search Bar',async ({page})=>{
         await linkedinleads.addleadsbutton();
         await generateLeads.continuebutton().click();
         await linkedinsearchbar.listnameinputfield('automation lead1');
-        await linkedinsearchbar.selectsendername('Shakil Bhuiyan')
+        await linkedinsearchbar.selectsendername('Shakil Bhuiyan');
         //await page.waitForTimeout(20000);
         await linkedinsearchbar.searchurlinput('https://www.linkedin.com/search/results/people/?keywords=software%20engineer&origin=SWITCH_SEARCH_VERTICAL&sid=-Tu');
         await linkedinsearchbar.startimportbutton().click();
@@ -52,6 +60,7 @@ test.describe('Linkedin Leads Test',()=>{
         await linkedineventattendees.selectsendername('Shakil Bhuiyan');
         await linkedineventattendees.eventattendeesurlinput('https://www.linkedin.com/voyager/api/graphql?variables=(start:0,origin:EVENT_PAGE_CANNED_SEARCH,query:(flagshipSearchIntent:SEARCH_SRP,queryParameters:List((key:eventAttending,value:List(7408867606096437249)),(key:resultType,value:List(PEOPLE))),includeFiltersInResponse:false))&queryId=voyagerSearchDashClusters.ef3d0937fb65bd7812e32e5a85028e79');
         await linkedineventattendees.startimportbutton().click();
+        await expect(page.getByText('Started importing leads for linkedin event')).toBeVisible();
     })
     test('Verify Succssful lead import from LinkedIn Post (Reactors)',async ({page})=>{
         await linkedinleads.addleadsbutton();
@@ -64,13 +73,42 @@ test.describe('Linkedin Leads Test',()=>{
         await linkedinsearchbar.startimportbutton().click();
         await page.waitForTimeout(2000);
         await expect(page.getByText('Success')).toBeVisible();
+        //await expect(page.getByText('Started importing leads for linkedin post reactors')).toBeVisible();
     })
-    // test.only('Verify Succssful lead import from LinkedIn Search (Companies)',async ({page})=>{
-        
-    // })
-    // test.only('Verify Succssful lead import from Import from CSV',async ({page})=>{
+    test('Verify Succssful lead import from LinkedIn Search (Companies)',async ({page})=>{
+        await linkedinleads.addleadsbutton();
+        await generateLeads.linkedinSearchCompanies().click();
+        await generateLeads.continuebutton().click();
+        await linkedinsearchbar.listnameinputfield('Companies lead 1');
+        await linkedinsearchbar.selectsendername('Shakil Bhuiyan');
+        await linkedinsearchcompanies.searchqueryinput('Chocolate');
+        await page.waitForTimeout(2000);
+        await linkedinsearchbar.startimportbutton().click();
+        //await page.waitForTimeout(2000);
+        await expect(page.getByText('Success')).toBeVisible();       
+    })
 
-    // })
+    test.only('Verify Succssful People Lead Import from Import from CSV',async ({page})=>{
+        await linkedinleads.addleadsbutton();
+        await generateLeads.importfromcsv().click();
+        await generateLeads.continuebutton().click();
+        //await imprtfromcsvpage.uploadspreadsheet().click();
+        await imprtfromcsvpage.uploadspreadsheet().setInputFiles('UploadFiles\\seedlink leads.csv');
+        await imprtfromcsvpage.selectprofileurl('Profile URL');
+        await imprtfromcsvpage.firstname('First Name');
+        await imprtfromcsvpage.lastname('Last Name');
+        await imprtfromcsvpage.location('Location');
+        await imprtfromcsvpage.headline('Headline');
+        await imprtfromcsvpage.companyname('Company');
+        await imprtfromcsvpage.about('About');
+        await imprtfromcsvpage.emailaddress('Email Address');
+        await imprtfromcsvpage.createemptylist('people imported leads');
+        await imprtfromcsvpage.importleadsbutton().click();
+
+        await expect(page.getByText('Started importing leads')).toBeVisible();
+    })
+
+
     // test.only('Verify Succssful lead import from Sales Navigator (Leads)',async ({page})=>{
         
     // })

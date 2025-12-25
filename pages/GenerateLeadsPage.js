@@ -7,9 +7,15 @@ export class GenerateLeadsPage{
         this.linkedinEventAttendeesLocator= '//span[normalize-space()="LinkedIn Event (Attendees)"]';
         this.linkedinPostReactorsLocator='(//span[normalize-space()="LinkedIn Post (Reactors)"])[1]';
         this.linkedinSearchCompaniesLocator='//span[normalize-space()="LinkedIn Search (Companies)"]';
-        this.importCSVLocator='//span[normalize-space()="Import from CSV"]';
+        this.importFromCSVLocator='//span[normalize-space()="Import from CSV"]';
         this.salesNavigatorLeadsLocator='//span[normalize-space()="Sales Navigator (Leads)"]';
         this.SalesNavigatorAccountsLocator='//span[normalize-space()="Sales Navigator (Leads)"]';
+    }
+    importfromcsv(){
+        return this.page.locator(this.importFromCSVLocator);
+    }
+    linkedinSearchCompanies(){
+        return this.page.locator(this.linkedinSearchCompaniesLocator);
     }
     linkedinpostreactors(){
         return this.page.locator(this.linkedinPostReactorsLocator);
