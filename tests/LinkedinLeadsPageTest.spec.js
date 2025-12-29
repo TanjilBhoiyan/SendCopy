@@ -88,37 +88,37 @@ test.describe('Linkedin Leads Test',()=>{
         await expect(page.getByText('Success')).toBeVisible();       
     })
 
-    test('Verify Succssful People Lead Import from Import from CSV',async ({page})=>{
+    test.only('Verify Succssful People Lead Import from Import from CSV',async ({page})=>{
         await linkedinleads.addleadsbutton();
         await generateLeads.importfromcsv().click();
         await generateLeads.continuebutton().click();
         //await imprtfromcsvpage.uploadspreadsheet().click();
         await imprtfromcsvpage.uploadspreadsheet().setInputFiles('UploadFiles\\seedlink leads.csv');
-        await imprtfromcsvpage.selectprofileurlPeople('Profile URL');
-        await imprtfromcsvpage.firstname('First Name');
-        await imprtfromcsvpage.lastname('Last Name');
-        await imprtfromcsvpage.location('Location');
-        await imprtfromcsvpage.headline('Headline');
-        await imprtfromcsvpage.companyname('Company');
-        await imprtfromcsvpage.about('About');
-        await imprtfromcsvpage.emailaddress('Email Address');
+        await imprtfromcsvpage.firstdropdownitem('Profile URL');
+        await imprtfromcsvpage.seconddropdownitem('First Name');
+        await imprtfromcsvpage.thirddropdownitem('Last Name');
+        await imprtfromcsvpage.fourthdropdownitem('Location');
+        await imprtfromcsvpage.fifthdropdownitem('Headline');
+        await imprtfromcsvpage.sixthdropdownitem('Company');
+        await imprtfromcsvpage.seventhdropdownitem('About');
+        await imprtfromcsvpage.eighthdropdownitem('Email Address');
         await imprtfromcsvpage.createemptylist('people imported leads');
         await imprtfromcsvpage.importleadsbutton().click();
         await expect(page.getByText('Started importing leads')).toBeVisible();
     })
-    test.only('Verify Succssful Company Lead Import from Import from CSV',async ({page})=>{
+    test('Verify Succssful Company Lead Import from Import from CSV',async ({page})=>{
         await linkedinleads.addleadsbutton();
         await generateLeads.importfromcsv().click();
         await generateLeads.continuebutton().click();
         await imprtfromcsvpage.companybutton().click();
         await imprtfromcsvpage.uploadspreadsheet().setInputFiles('UploadFiles\\company leads.csv');
-        await imprtfromcsvpage.selectcompanyname('Company Name');
-        await imprtfromcsvpage.selectcompanyurl('Company URL');
-        //await imprtfromcsvpage.companylinkedinurl('Profile URL');
-        await imprtfromcsvpage.companylinkedinurl('Location');
-        //await imprtfromcsvpage.companyheadline('Headline');
-        await imprtfromcsvpage.companyabout('About');
-        //await imprtfromcsvpage.companyemail('Email Address');
+        await imprtfromcsvpage.firstdropdownitem('Company Name');
+        await imprtfromcsvpage.seconddropdownitem('Company URL');
+        //await imprtfromcsvpage.thirddropdownitem('Profile URL');
+        await imprtfromcsvpage.fourthdropdownitem('Location');
+        //await imprtfromcsvpage.fifthdropdownitem('Headline');
+        await imprtfromcsvpage.sixthdropdownitem('About');
+        //await imprtfromcsvpage.seventhdropdownitem('Email Address');
         await imprtfromcsvpage.createemptylist('Company imported leads');
         await imprtfromcsvpage.importleadsbutton().click();
         await expect(page.getByText('Started importing leads')).toBeVisible();

@@ -43,54 +43,30 @@ export class ImprtFromCSVPage{
             }
         }
     }
-    async selectcompanyname(Company_name){
-        await this.selectOptionByText(this.firstDropdownLocator,Company_name);
+    async eighthdropdownitem(eighth_dropdown_text){
+        await this.selectOptionByText(this.emailaddressLocator,eighth_dropdown_text);
     }
-    async selectcompanyurl(companu_url){
-        await this.selectOptionByText(this.secondDropdownLocator,companu_url);
+    async seventhdropdownitem(seventh_dropdown_text){
+        await this.selectOptionByText(this.seventhDropdownLocator,seventh_dropdown_text);
     }
-    async companylinkedinurl(linkedIn_profile_url){
-        await this.selectOptionByText(this.thirdDropdownLocator,linkedIn_profile_url);
+    async sixthdropdownitem(sixth_dropdown_text){
+        await this.selectOptionByText(this.sixthLocator,sixth_dropdown_text);
     }
-    async companylocation(company_location){
-        await this.selectOptionByText(this.fourthDropdownLocator,company_location);
+    async fifthdropdownitem(fifth_dropdown_text){
+        await this.selectOptionByText(this.fifthDropdownLocator,fifth_dropdown_text);
     }
-    async companyheadline(company_headline){
-        await this.selectOptionByText(this.fifthDropdownLocator,company_headline);
+    async fourthdropdownitem(fourth_dropdown_text){
+        await this.selectOptionByText(this.fourthDropdownLocator,fourth_dropdown_text);
     }
-    async companyabout(company_about){
-        await this.selectOptionByText(this.sixthLocator,company_about);
+    async thirddropdownitem(third_dropdown_text){
+        await this.selectOptionByText(this.thirdDropdownLocator,third_dropdown_text);
     }
-    async companyemail(company_email){
-        await this.selectOptionByText(this.sixthLocator,company_email);
+    async seconddropdownitem(second_dropdown_text){
+        await this.selectOptionByText(this.secondDropdownLocator,second_dropdown_text);
     }
-
-
-    async emailaddress(email_address){
-        await this.selectOptionByText(this.emailaddressLocator,email_address);
+    async firstdropdownitem(first_dropdown_text){
+        await this.selectOptionByText(this.firstDropdownLocator,first_dropdown_text);
     }
-    async about(about){
-        await this.selectOptionByText(this.seventhDropdownLocator,about);
-    }
-    async companyname(company_name){
-        await this.selectOptionByText(this.sixthLocator,company_name);
-    }
-    async headline(headline){
-        await this.selectOptionByText(this.fifthDropdownLocator,headline);
-    }
-    async location(location){
-        await this.selectOptionByText(this.fourthDropdownLocator,location);
-    }
-    async lastname(last_name){
-        await this.selectOptionByText(this.thirdDropdownLocator,last_name);
-    }
-    async firstname(first_name){
-        await this.selectOptionByText(this.secondDropdownLocator,first_name);
-    }
-    async selectprofileurlPeople(Profile_Url){
-        await this.selectOptionByText(this.firstDropdownLocator,Profile_Url);
-    }
-
     uploadspreadsheet(){
         return this.page.locator(this.uploadSpreadSheetLocator);
     }
