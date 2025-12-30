@@ -9,11 +9,11 @@ export class LinkedInSearchBarPage{
         this.startImportButtonLocator = 'button[type="submit"]';
     }
 
-    async listnameinputfield(list_name){
+    async listNameInputField(list_name){
         await this.page.locator(this.listNameInputFieldLocator).fill(list_name);
     }
 
-    async selectsendername(sender_name){
+    async selectSenderName(sender_name){
         await this.page.locator(this.selectSenderDropdownLocator).click();
         await this.page.waitForTimeout(2000);
 
@@ -26,11 +26,11 @@ export class LinkedInSearchBarPage{
             }
         }
     }
-    async searchurlinput(search_url){
+    async searchUrlInput(search_url){
         await this.page.locator(this.searchUrlInputLocator).fill(search_url);
         await this.page.waitForTimeout(2000);
     }
-    startimportbutton(){
+    startImportButton(){
         return this.page.locator(this.startImportButtonLocator);
     }
 }

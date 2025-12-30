@@ -11,19 +11,19 @@ export class GenerateLeadsPage{
         this.salesNavigatorLeadsLocator='//span[normalize-space()="Sales Navigator (Leads)"]';
         this.SalesNavigatorAccountsLocator='//span[normalize-space()="Sales Navigator (Leads)"]';
     }
-    importfromcsv(){
+    importFromCSV(){
         return this.page.locator(this.importFromCSVLocator);
     }
     linkedinSearchCompanies(){
         return this.page.locator(this.linkedinSearchCompaniesLocator);
     }
-    linkedinpostreactors(){
+    linkedinPostReactors(){
         return this.page.locator(this.linkedinPostReactorsLocator);
     }
-    continuebutton(){
+    continueButton(){
         return this.page.locator(this.continueButtonLocator);
     }
-    linkedineventattendees(){
+    linkedinEventAttendees(){
         return this.page.locator(this.linkedinEventAttendeesLocator);
     }
 }

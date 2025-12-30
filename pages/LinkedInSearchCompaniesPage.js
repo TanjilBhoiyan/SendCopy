@@ -3,7 +3,7 @@ export class LinkedinSearchCompanies{
         this.page = page;
         this.searchQueryInputLocator='//input[@id="keyword"]';
     }
-    searchqueryinput(search_keyword){
+    searchQueryInput(search_keyword){
         return this.page.locator(this.searchQueryInputLocator).fill(search_keyword);
     }
 }

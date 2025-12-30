@@ -33,8 +33,8 @@ test.describe('Login Tests',()=>{
         await expect(page.getByText('invalid credentials')).toBeVisible();
     })
     test('Check Login button is visible/clickable',async({page})=>{
-        await expect(await login.login_button()).toBeVisible();
-        await expect(await login.login_button()).toBeEnabled();
+        await expect(await login.loginButton()).toBeVisible();
+        await expect(await login.loginButton()).toBeEnabled();
     })
     test('Try to login with valid email but the email has not signed up yet',async({page})=>{
         await login.login('kheladhula12345@gmail.com','Shakil123@#?');
@@ -51,108 +51,108 @@ test.describe('Signup Tests',()=>{
     test.beforeEach(async ({page})=>{
         //const signup = new LoginPage(page);
         await signup.gotoLoginPage();
-        await (await signup.signupbutton()).click();
+        await (await signup.signUpButton()).click();
     })
     test('Check signup button clickable',async({page})=>{
-        await expect(await signup.signupbutton()).toBeVisible();
-        await expect(await signup.signupbutton()).toBeEnabled();
+        await expect(await signup.signUpButton()).toBeVisible();
+        await expect(await signup.signUpButton()).toBeEnabled();
     })
     
     test('Check user can signup without first name',async({page})=>{
         //const signup = new LoginPage(page);
-        await signup.lastname('Bhoiyan');
-        await signup.signupemail('zysxx@gmail.com');
-        await signup.signuppassword('Tanjil123@#?');
-        await signup.confirmpassword('Tanjil123@#?');
-        await signup.createaccount();
+        await signup.lastName('Bhoiyan');
+        await signup.signUpEmail('zysxx@gmail.com');
+        await signup.signUpPassword('Tanjil123@#?');
+        await signup.confirmPassword('Tanjil123@#?');
+        await signup.createAccount();
         // Assertion
         await expect(page.getByText('First name is required')).toBeVisible();
     })
     test('Check user can signup without last name',async({page})=>{
-        await signup.firstname('Tanjil');
-        //await signup.lastname('Bhoiyan');
-        await signup.signupemail('zysxx@gmail.com');
-        await signup.signuppassword('Tanjil123@#?');
-        await signup.confirmpassword('Tanjil123@#?');
-        await signup.createaccount();
+        await signup.firstName('Tanjil');
+        //await signup.lastName('Bhoiyan');
+        await signup.signUpEmail('zysxx@gmail.com');
+        await signup.signUpPassword('Tanjil123@#?');
+        await signup.confirmPassword('Tanjil123@#?');
+        await signup.createAccount();
         // Assertion
         await expect(page.getByText('Last name is required')).toBeVisible();
     })
     test('Check user can signup using invalid email',async({page})=>{
-        await signup.firstname('Tanjil');
-        await signup.lastname('Bhoiyan');
-        await signup.signupemail('zysxx@gmail');
-        await signup.signuppassword('Tanjil123@#?');
-        await signup.confirmpassword('Tanjil123@#?');
-        await signup.createaccount();
+        await signup.firstName('Tanjil');
+        await signup.lastName('Bhoiyan');
+        await signup.signUpEmail('zysxx@gmail');
+        await signup.signUpPassword('Tanjil123@#?');
+        await signup.confirmPassword('Tanjil123@#?');
+        await signup.createAccount();
         // Assertion
         await expect(page.getByText('Please enter a valid email address')).toBeVisible();
     })
     test('Try to signup using less than 8 character password',async({page})=>{
-        await signup.firstname('Tanjil');
-        await signup.lastname('Bhoiyan');
-        await signup.signupemail('abcde@gmail.com');
-        await signup.signuppassword('tanjil');
+        await signup.firstName('Tanjil');
+        await signup.lastName('Bhoiyan');
+        await signup.signUpEmail('abcde@gmail.com');
+        await signup.signUpPassword('tanjil');
         // Assertion
         await expect(page.getByText('Password must be at least 8 characters')).toBeVisible();
     })
     test('If user does not use uppercase letter in password',async({page})=>{
-        await signup.firstname('Tanjil');
-        await signup.lastname('Bhoiyan');
-        await signup.signupemail('abcde@gmail.com');
-        await signup.signuppassword('tanjilxyz');
+        await signup.firstName('Tanjil');
+        await signup.lastName('Bhoiyan');
+        await signup.signUpEmail('abcde@gmail.com');
+        await signup.signUpPassword('tanjilxyz');
         // Assertion
         await expect(page.getByText('Password must contain at least one uppercase letter')).toBeVisible();
     })
     test('If password is not contain at least one number',async({page})=>{
         //await page.waitForTimeout(1000);
-        await signup.firstname('Tanjil');
-        await signup.lastname('Bhoiyan');
-        await signup.signupemail('abcde@gmail.com');
-        await signup.signuppassword('Tanjilxyz');
-        await signup.confirmpassword('Tanjil123@#?');
-        await signup.createaccount();
+        await signup.firstName('Tanjil');
+        await signup.lastName('Bhoiyan');
+        await signup.signUpEmail('abcde@gmail.com');
+        await signup.signUpPassword('Tanjilxyz');
+        await signup.confirmPassword('Tanjil123@#?');
+        await signup.createAccount();
         // Assertion
         await expect(page.getByText('Password must contain at least one number')).toBeVisible();
     })
     test('If password is not contain at least one special character',async({page})=>{
         //await page.waitForTimeout(1000);
-        await signup.firstname('Tanjil');
-        await signup.lastname('Bhoiyan');
-        await signup.signupemail('abcde@gmail.com');
-        await signup.signuppassword('Tanjil12');
-        await signup.confirmpassword('Tanjil123@#?');
-        await signup.createaccount();
+        await signup.firstName('Tanjil');
+        await signup.lastName('Bhoiyan');
+        await signup.signUpEmail('abcde@gmail.com');
+        await signup.signUpPassword('Tanjil12');
+        await signup.confirmPassword('Tanjil123@#?');
+        await signup.createAccount();
         // Assertion
         await expect(page.getByText('Password must contain at least one special character')).toBeVisible();
     })
     test('Verify re-enter password does not match with password',async({page})=>{
-        await signup.firstname('Tanjil');
-        await signup.lastname('Bhoiyan');
-        await signup.signupemail('abcde@gmail.com');
-        await signup.signuppassword('Tanjil123@#?');
-        await signup.confirmpassword('Shakil123@#?');
-        await signup.createaccount();
+        await signup.firstName('Tanjil');
+        await signup.lastName('Bhoiyan');
+        await signup.signUpEmail('abcde@gmail.com');
+        await signup.signUpPassword('Tanjil123@#?');
+        await signup.confirmPassword('Shakil123@#?');
+        await signup.createAccount();
         // Assertion
         await expect(page.getByText('Passwords do not match')).toBeVisible();
     })
     test('Check successful signup using valid info',async({page})=>{
-        await signup.firstname('Tanjil');
-        await signup.lastname('Bhoiyan');
-        await signup.signupemail('abcde4@gmail.com');
-        await signup.signuppassword('Tanjil123@#?');
-        await signup.confirmpassword('Tanjil123@#?');
-        await signup.createaccount();
+        await signup.firstName('Tanjil');
+        await signup.lastName('Bhoiyan');
+        await signup.signUpEmail('abcde4@gmail.com');
+        await signup.signUpPassword('Tanjil123@#?');
+        await signup.confirmPassword('Tanjil123@#?');
+        await signup.createAccount();
         // Assertion
         await expect(page.getByText('Signup successful')).toBeVisible();
     })
     test('Try to signup using already used email',async({page})=>{
-        await signup.firstname('Tanjil');
-        await signup.lastname('Bhoiyan');
-        await signup.signupemail('abcde1@gmail.com');
-        await signup.signuppassword('Tanjil123@#?');
-        await signup.confirmpassword('Tanjil123@#?');
-        await signup.createaccount();
+        await signup.firstName('Tanjil');
+        await signup.lastName('Bhoiyan');
+        await signup.signUpEmail('abcde1@gmail.com');
+        await signup.signUpPassword('Tanjil123@#?');
+        await signup.confirmPassword('Tanjil123@#?');
+        await signup.createAccount();
         // Assertion
         await expect(page.getByText('Signup failed')).toBeVisible();
     })

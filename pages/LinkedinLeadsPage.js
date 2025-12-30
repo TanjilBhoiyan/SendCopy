@@ -16,7 +16,7 @@ exports.LinkedinLeadsPage = class LinkedinLeadsPage{
     async linkedinleadLink(){
         await this.page.locator(this.leadsPageLocator).click();
     }
-    async searchlist(search_item){
+    async searchList(search_item){
         await this.page.locator(this.searchListLocator).fill(search_item);
     }
     async getRow(search_item){
@@ -25,13 +25,13 @@ exports.LinkedinLeadsPage = class LinkedinLeadsPage{
     async noRresultVisible(){
         return this.noresultLocator;
     }
-    allListname(){
+    allListName(){
         return this.page.locator(this.alllistnameLocator);
     }
     leadNumber(row){
         return row.locator(this.leadsnumberLocator);
     }
-    async addleadsbutton(){
+    async addLeadsButton(){
         await this.page.locator(this.addleadsButtonLocator).click();
     }
 

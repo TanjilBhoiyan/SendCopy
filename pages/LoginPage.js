@@ -26,33 +26,33 @@ exports.LoginPage = class LoginPage {
         await this.page.locator(this.passwordImputLocator).fill(user_password);
         await this.page.locator(this.loginButtonLocator).click();
     }
-    async login_button(){
+    async loginButton(){
         return this.page.locator(this.loginButtonLocator);
     }
     // async email_input(){
     //     return this.page.locator(this.emailInputLocator);
     // }
-    async signupbutton(){
+    async signUpButton(){
         return this.page.locator(this.signupButtonLocator);
     }
-    async firstname(first_name){
+    async firstName(first_name){
         //await this.page.waitForTimeout(1000);
         await this.firstNameInputLocator.fill(first_name);
     }
-    async lastname(last_name){
+    async lastName(last_name){
         //await this.page.waitForTimeout(1000);
         await this.lastNameInputLocator.fill(last_name);
     }
-    async signupemail(signup_email){
+    async signUpEmail(signup_email){
         await this.signupEmailInputLocator.fill(signup_email);
     }
-    async signuppassword(signup_password){
+    async signUpPassword(signup_password){
         await this.signupPasswordInputLocator.fill(signup_password);
     }
-    async confirmpassword(confirm_password){
+    async confirmPassword(confirm_password){
         await this.confirmPasswordInputLocator.fill(confirm_password);
     }
-    async createaccount(){
+    async createAccount(){
         await this.page.locator(this.createAccountButtonLocator).click();
     }
 
