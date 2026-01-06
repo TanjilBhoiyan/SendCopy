@@ -3,19 +3,10 @@ import { LoginPage } from '../pages/LoginPage';
 import { LinkedinLeadsPage } from '../pages/LinkedinLeadsPage';
 import { GenerateLeadsPage } from '../pages/GenerateLeadsPage';
 import { LinkedInSearchBarPage } from '../pages/LinkedInSearchBarPage';
-//import { LinkedinEventAttendeesPage} from '../pages/LinkedInEventAttendeesPage';
-import { LinkedinSearchCompanies } from '../pages/LinkedInSearchCompaniesPage';
-//import { ImprtFromCSVPage } from '../pages/ImportFromCSVPage';
 
 test.describe.configure({mode:'serial'});
 
 test.describe('Linkedin Leads Test',()=>{
-    /**@type {ImprtFromCSVPage} */
-    let imprtfromcsvpage;
-    /**@type {LinkedinSearchCompanies} */
-    let linkedinsearchcompanies;
-    /**@type {LinkedinEventAttendeesPage} */
-    let linkedineventattendees;
     /** @type {LinkedinLeadsPage} */
     let linkedinleads;
     /**@type {GenerateLeadsPage} */
@@ -33,8 +24,52 @@ test.describe('Linkedin Leads Test',()=>{
         // create object for generate leads page
         generateLeads = new GenerateLeadsPage(page);
         linkedinsearchbar = new LinkedInSearchBarPage(page);
-        linkedineventattendees = new LinkedinEventAttendeesPage(page);
-        linkedinsearchcompanies = new LinkedinSearchCompanies(page);
-        imprtfromcsvpage = new ImprtFromCSVPage(page);
+    })
+    test('Verify without using Post (Reactors) list name',async ({page})=>{
+        await linkedinleads.addLeadsButton();
+        await generateLeads.linkedinPostReactors().click();
+        await generateLeads.continueButton().click();
+        await linkedinsearchbar.selectSenderName('Shakil Bhuiyan')
+        await linkedinsearchbar.searchUrlInput('https://www.linkedin.com/posts/universal-software_were-hiring-universal-software-is-looking-activity-7400149143756808192-jPI2?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEy3CcIBdOxcMO3UPmoZ-lvSiLjZgjOsA0A');
+        await page.waitForTimeout(2000);
+        await linkedinsearchbar.startImportButton().click();
+        await page.waitForTimeout(2000);
+        await expect(page.getByText('List name is required')).toBeVisible();
+        //await expect(page.getByText('Started importing leads for linkedin post reactors')).toBeVisible();
+    })
+    test('Verify without select any sender',async ({page})=>{
+        await linkedinleads.addLeadsButton();
+        await generateLeads.linkedinPostReactors().click();
+        await generateLeads.continueButton().click();
+        await linkedinsearchbar.listNameInputField('Post reactor lead 3');
+        await linkedinsearchbar.searchUrlInput('https://www.linkedin.com/posts/universal-software_were-hiring-universal-software-is-looking-activity-7400149143756808192-jPI2?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEy3CcIBdOxcMO3UPmoZ-lvSiLjZgjOsA0A');
+        await page.waitForTimeout(2000);
+        await linkedinsearchbar.startImportButton().click();
+        await page.waitForTimeout(2000);
+        await expect(page.getByText('At least one sender must be selected')).toBeVisible();
+    })
+    test('Verify using invalid Post Reactors URL',async ({page})=>{
+        await linkedinleads.addLeadsButton();
+        await generateLeads.linkedinPostReactors().click();
+        await generateLeads.continueButton().click();
+        await linkedinsearchbar.listNameInputField('Post reactor lead 3');
+        await linkedinsearchbar.selectSenderName('Shakil Bhuiyan')
+        await linkedinsearchbar.searchUrlInput('https://www.linkedin.com/universal-software_were-hiring-universal-software-is-looking-activity-7400149143756808192-jPI2?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEy3CcIBdOxcMO3UPmoZ-lvSiLjZgjOsA0A');
+        await page.waitForTimeout(2000);
+        await linkedinsearchbar.startImportButton().click();
+        await page.waitForTimeout(2000);
+        await expect(page.getByText('URL must be a valid LinkedIn post URL')).toBeVisible();
+    })
+    test('Verify using a url which is not a url',async ({page})=>{
+        await linkedinleads.addLeadsButton();
+        await generateLeads.linkedinPostReactors().click();
+        await generateLeads.continueButton().click();
+        await linkedinsearchbar.listNameInputField('Post reactor lead 3');
+        await linkedinsearchbar.selectSenderName('Shakil Bhuiyan')
+        await linkedinsearchbar.searchUrlInput('sfdsfdhtgdffgdsfg');
+        await page.waitForTimeout(2000);
+        await linkedinsearchbar.startImportButton().click();
+        await page.waitForTimeout(2000);
+        await expect(page.getByText('Please enter a valid URL')).toBeVisible();
     })
 })
