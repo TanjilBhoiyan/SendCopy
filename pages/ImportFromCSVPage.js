@@ -17,7 +17,20 @@ export class ImprtFromCSVPage {
         this.importLeadsButtonLocator = '//button[normalize-space()="Import Leads"]';
         this.listNameInputLocator = '//input[@placeholder="Enter list name"]';
         this.confirmButtonLocator = '//div[contains(text(),"Confirm")]';
-        this.companyLocator = '(//button[normalize-space()="Company"])[1]'
+        this.companyLocator = '(//button[normalize-space()="Company"])[1]';
+        this.crossButtonLocator='.lucide.lucide-x.w-4.h-4';
+        this.addCustomVariableLocator='//button[normalize-space()="Add custom variable"]';
+        this.customVariableRowLocator='div.flex.items-center.gap-3.p-4.border.border-gray-200.rounded-lg';
+        this.customVariableDeleteButtonLocator='.lucide.lucide-trash2.lucide-trash-2.w-4.h-4';
+    }
+    async customVariableDeleteButton(){
+        await this.page.locator(this.customVariableDeleteButtonLocator).click();
+    }
+    customVariableRow(){
+        return this.page.locator(this.customVariableRowLocator);
+    }
+    addCustomVariable(){
+        return this.page.locator(this.addCustomVariableLocator);
     }
     companyButton() {
         return this.page.locator(this.companyLocator);
@@ -81,5 +94,8 @@ export class ImprtFromCSVPage {
     }
     uploadSpreadSheet() {
         return this.page.locator(this.uploadSpreadSheetLocator);
+    }
+    crossButton(){
+        return this.page.locator(this.crossButtonLocator);
     }
 }
