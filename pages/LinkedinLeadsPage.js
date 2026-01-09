@@ -28,7 +28,11 @@ export class LinkedinLeadsPage{
         this.combineListsButtonLocator='//span[normalize-space()="Combine lists"]';
         this.combineButtonLocator='//button[normalize-space()="Combine"]';
         this.intersectButtonLocator='//button[normalize-space()="Intersect"]';
+        this.leadsLocator='(//div[@class="flex items-center gap-2 cursor-pointer"])[1]';
 
+    }
+    async leads(){
+        await this.page.locator(this.leadsLocator).click();
     }
     async excludeFromList(leads_name){
         await this.page.locator(this.excludeFromListButtonLocator).click();
