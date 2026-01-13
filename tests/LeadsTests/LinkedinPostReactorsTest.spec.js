@@ -1,8 +1,8 @@
 import { test , expect } from '@playwright/test';
-import { LoginPage } from '../pages/LoginPage';
-import { LinkedinLeadsPage } from '../pages/LinkedinLeadsPage';
-import { GenerateLeadsPage } from '../pages/GenerateLeadsPage';
-import { LinkedInSearchBarPage } from '../pages/LinkedInSearchBarPage';
+import { LoginPage } from '../../pages/LoginPage';
+import { LinkedinLeadsPage } from '../../pages/leadsPages/LinkedinLeadsPage';
+import { GenerateLeadsPage } from '../../pages/leadsPages/GenerateLeadsPage';
+import { LinkedInSearchBarPage } from '../../pages/leadsPages/LinkedInSearchBarPage';
 
 test.describe.configure({mode:'serial'});
 

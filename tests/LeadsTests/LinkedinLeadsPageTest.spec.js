@@ -1,11 +1,11 @@
 import { test , expect } from '@playwright/test';
-import { LoginPage } from '../pages/LoginPage';
-import { LinkedinLeadsPage } from '../pages/LinkedinLeadsPage';
-import { GenerateLeadsPage } from '../pages/GenerateLeadsPage';
-import { LinkedInSearchBarPage } from '../pages/LinkedInSearchBarPage';
-import { LinkedinEventAttendeesPage} from '../pages/LinkedInEventAttendeesPage';
-import { LinkedinSearchCompanies } from '../pages/LinkedInSearchCompaniesPage';
-import { ImprtFromCSVPage } from '../pages/ImportFromCSVPage';
+import { LoginPage } from '../../pages/LoginPage';
+import { LinkedinLeadsPage } from '../../pages/leadsPages/LinkedinLeadsPage';
+import { GenerateLeadsPage } from '../../pages/leadsPages/GenerateLeadsPage';
+import { LinkedInSearchBarPage } from '../../pages/leadsPages/LinkedInSearchBarPage';
+import { LinkedinEventAttendeesPage} from '../../pages/leadsPages/LinkedInEventAttendeesPage';
+import { LinkedinSearchCompanies } from '../../pages/leadsPages/LinkedInSearchCompaniesPage';
+import { ImprtFromCSVPage } from '../../pages/leadsPages/ImportFromCSVPage';
 
 test.describe.configure({mode:'serial'});
 

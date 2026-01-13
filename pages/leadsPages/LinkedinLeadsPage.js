@@ -1,4 +1,6 @@
-import { ImprtFromCSVPage } from "./ImportFromCSVPage";
+
+import { ImprtFromCSVPage } from "../leadsPages/ImportFromCSVPage";
+
 export class LinkedinLeadsPage{
     constructor(page){
         this.page = page;

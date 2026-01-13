@@ -1,7 +1,7 @@
 import { test , expect } from '@playwright/test';
-import { LoginPage } from '../pages/LoginPage';
-import { LinkedinLeadsPage } from '../pages/LinkedinLeadsPage';
-import { LeadsDetailsPage } from '../pages/LeadsDetailsPage';
+import { LoginPage } from '../../pages/LoginPage';
+import { LinkedinLeadsPage } from '../../pages/leadsPages/LinkedinLeadsPage';
+import { LeadsDetailsPage } from '../../pages/leadsPages/LeadsDetailsPage';
 
 test.describe.configure({mode:'serial'});
 
@@ -17,8 +17,6 @@ test.describe('Linkedin Leads Test',()=>{
         await login.login('shakilbhoiyan47@gmail.com','Shakil123@#?');
         linkedinleads = new LinkedinLeadsPage(page);
         await linkedinleads.linkedinLeadsLink();
-
-
         // create object for generate leads page
         leadsDetailsPage = new LeadsDetailsPage(page);
     })
