@@ -12,7 +12,7 @@ test.describe('Linkedin Leads Test',()=>{
     test.beforeEach(async ({page})=>{
         const login = new LoginPage(page);
         await login.gotoLoginPage();
-        await login.login('tanjil.bhoiyan@seedlink.vc','Tanjil123@#?');
+        await login.login('shakilbhoiyan47@gmail.com','Shakil123@#?');
         linkedinAccount = new LinkedinAccountPage(page);
         await linkedinAccount.linkedinAccountButton();
 
@@ -42,7 +42,7 @@ test.describe('Linkedin Leads Test',()=>{
         await linkedinAccount.connectAccountButton().click();
         await linkedinAccount.connectCookiesButton();
         await linkedinAccount.nextStepButton();
-        await linkedinAccount.liatValueInput(testData.linkedinAccountSPages.invalid_LIAT_token)
+        await linkedinAccount.liatValueInput(testData.linkedinAccountSPages.invalid_LIAT_token);
         await linkedinAccount.selectCountry(testData.linkedinAccountSPages.country);
         await expect(linkedinAccount.connectAccount()).toBeDisabled();
     })
@@ -143,13 +143,65 @@ test.describe('Linkedin Leads Test',()=>{
         await linkedinAccount.purchaseSeatsButton().click();
         await expect(page).toHaveURL('https://app.sendcopy.ai/settings/billing');
     })
+    test('Configure proxy feature when verification required', async ({ page }) => {
+        if(await linkedinAccount.verificationRequired().isVisible()){
+            await linkedinAccount.threeDotButton();
+            await expect(await linkedinAccount.threeDotButton()).toHaveCount(1);
+        }
+        else{
+            console.log('Verification not found, skipping Configure proxy feature');
+        }
+    });
+    test('Configure LinkedIn Account Proxy feature visible', async ({ page }) => {
+        if(await linkedinAccount.verificationRequired().isVisible()){
+            await linkedinAccount.threeDotButton().click();
+            await expect(await linkedinAccount.threeDotButton()).toHaveCount(1);
+            await linkedinAccount.configureProxyButton().click();
+            await expect(await linkedinAccount.verifyYourProxySection()).toHaveCount(1);
+        }
+        // else{
+        //     console.log('Verification not found, skipping Configure proxy feature');
+        // }
+    });
+    test('Remove linkedin account from Linkedin Account page', async ({ page }) => {
+        await linkedinAccount.threeDotButton().click();
+        await linkedinAccount.removeAccountButton();
+        await linkedinAccount.removeAccountRedButton().click();
+        await expect(page.getByText('LinkedIn account disconnected successfully')).toBeVisible();
+    });
+    test('Check if select Linkedin Conversavtion from configure Inbox privacy,should showing all linkedin conversation in unibox', async ({ page }) => {
+        const connectedRow = await linkedinAccount.getLinkedinAccountStatus('Connected');
+        if(connectedRow){
+            await connectedRow.locator('button').last().click();
+        }
+        await linkedinAccount.InboXPrivacyConfiguration().click();
+        await linkedinAccount.choosePrivacyMode('Track and import all LinkedIn conversations');
+        await expect(page.getByText('Inbox privacy configured successfully')).toBeVisible();
+    });
+    test('Check if select Linkedin Conversavtion from configure Inbox privacy,should showing all linkedin conversation in unibox', async ({ page }) => {
+        const connectedRow = await linkedinAccount.getLinkedinAccountStatus('Connected');
+        if(connectedRow){
+            await connectedRow.locator('button').last().click();
+        }
+        await linkedinAccount.InboXPrivacyConfiguration().click();
+        await linkedinAccount.choosePrivacyMode('Track only conversations started from SendCopy');
+        await expect(page.getByText('Inbox privacy configured successfully')).toBeVisible();
+    });
+
+
+
+
+
+
+
+
     test('Try to set max follows/Day grater than 40', async ({ page }) => {
         await linkedinAccount.configureLimitButton();
         await linkedinAccount.maxFollowDay('41');
         await expect(page.getByText('Value must be at most 40')).toBeVisible();
         //await linkedinAccount.updateSettingsButton().click();
     });
-    test.only('Try to set max follows/Day less than 40', async ({ page }) => {
+    test('Try to set max follows/Day less than 40', async ({ page }) => {
         await linkedinAccount.configureLimitButton();
         await linkedinAccount.maxFollowDay('39');
         await linkedinAccount.updateSettingsButton().click();
@@ -174,7 +226,7 @@ test.describe('Linkedin Leads Test',()=>{
         await expect(page.getByText('Value must be at most 40')).toBeVisible();
         //await linkedinAccount.updateSettingsButton().click();
     });
-    test.only('Try to set max InMail/Day less than 40', async ({ page }) => {
+    test('Try to set max InMail/Day less than 40', async ({ page }) => {
         await linkedinAccount.configureLimitButton();
         await linkedinAccount.inMailMessageDay('39');
         await linkedinAccount.updateSettingsButton().click();
@@ -186,7 +238,7 @@ test.describe('Linkedin Leads Test',()=>{
         await expect(page.getByText('Value must be at most 40')).toBeVisible();
         //await linkedinAccount.updateSettingsButton().click();
     });
-    test.only('Try to set max Connection Request/Day less than 25', async ({ page }) => {
+    test('Try to set max Connection Request/Day less than 25', async ({ page }) => {
         await linkedinAccount.configureLimitButton();
         await linkedinAccount.maxConnectionRequestDay('24');
         await linkedinAccount.updateSettingsButton().click();
@@ -198,7 +250,7 @@ test.describe('Linkedin Leads Test',()=>{
         await expect(page.getByText('Value must be at most 40')).toBeVisible();
         //await linkedinAccount.updateSettingsButton().click();
     });
-    test.only('Try to set max Profile Views/Day less than 40', async ({ page }) => {
+    test('Try to set max Profile Views/Day less than 40', async ({ page }) => {
         await linkedinAccount.configureLimitButton();
         await linkedinAccount.maxProfileViewsDay('39');
         await linkedinAccount.updateSettingsButton().click();
@@ -211,7 +263,7 @@ test.describe('Linkedin Leads Test',()=>{
         await expect(page.getByText('Value must be at most 40')).toBeVisible();
         //await linkedinAccount.updateSettingsButton().click();
     });
-    test.only('Try to set max Post Like/Day less than 40', async ({ page }) => {
+    test('Try to set max Post Like/Day less than 40', async ({ page }) => {
         await linkedinAccount.configureLimitButton();
         await linkedinAccount.maxPostLikesDay('39');
         await linkedinAccount.updateSettingsButton().click();

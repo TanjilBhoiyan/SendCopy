@@ -32,6 +32,90 @@ export class LinkedinAccountPage{
         this.maxProfileViewDayValueLocator='//body[1]/div[4]/div[3]/form[1]/div[6]/div[1]/div[1]/div[1]';
         this.maxPostLikesDaySliderLocator='#max-like-posts-per-day';
         this.maxPostLikesDayValueLocator='//body[1]/div[4]/div[3]/form[1]/div[7]/div[1]/div[1]/div[1]';
+        this.accountThreeDotLocator='(//button[@type="button"])[3]'
+        this.configureProxyButtonLocator='//span[normalize-space()="Configure proxy"]';
+        this.removeAccountButtonLocator='//span[normalize-space()="Remove account"]';
+        this.reconnectButtonLocator='//span[normalize-space()="Reconnect"]';
+        this.configureSendingLimitButtonLocator='//span[normalize-space()="Configure sending limits"]';
+        this.inboxPrivacyConfigurationLocator='//span[normalize-space()="Inbox privacy configuration"]';
+        this.verificationRequiredLocator='.text-red-600.font-medium.text-xs.whitespace-nowrap';
+        this.verifyYourProxySectionLocator='//div[@class="space-y-2"]';
+        this.removeAccountRedButtonLocator='//button[normalize-space()="Remove account"]';
+        //
+        this.allStatusLocator='//tr[@data-slot="table-row"]//div[contains(@class,"min-w-32")]//span';
+        this.allConnectedAccountsLocator='//tbody[@data-slot="table-body"]//tr[@data-slot="table-row"]'
+        this.linkedinConversationLocator='//label[normalize-space()="Track and import all LinkedIn conversations"]';
+        this.sendcopyConversationLocator='//label[normalize-space()="Track only conversations started from SendCopy"]'
+        this.setPrivacyButtonLocator='//button[normalize-space()="Set Privacy"]';
+
+
+    }
+    async choosePrivacyMode(conversation){
+        if(conversation==='Track and import all LinkedIn conversations'){
+            await this.page.locator(this.linkedinConversationLocator).click();
+            await this.page.locator(this.setPrivacyButtonLocator).click();
+        }
+        else if(conversation==='Track only conversations started from SendCopy'){
+            await this.page.locator(this.sendcopyConversationLocator).click();
+            await this.page.locator(this.setPrivacyButtonLocator).click();
+        }
+    }
+    async getLinkedinAccountStatus(status) {
+        const rows = this.page.locator(this.allConnectedAccountsLocator);
+        const rowCount = await rows.count();
+        console.log(rowCount);
+
+        for(let i=0;i<rowCount;i++){
+            const currentRow = rows.nth(i);
+            const statusText = await currentRow.innerText();
+
+            if(statusText.includes(status)){
+                return currentRow;
+                //break;
+            }
+        }
+        return null;
+    };
+    // connected or verificator requred 
+    // async isConnected(){
+    //     const rows = this.page.locator(this.allConnectedAccountsLocator);
+    //     const rowCount = await rows.count();
+    //     console.log(rowCount);
+
+    //     for(let i=0;i<rowCount;i++){
+
+    //         const currentRow = rows.nth(i);
+    //         const statusText = await currentRow.innerText();
+
+    //         if(statusText.includes('Connected')){
+    //             await currentRow.locator('button').last().click();
+    //             break;
+    //         }
+    //     }
+    //     console.log('User has no connected linkedin account');
+    // }
+    InboXPrivacyConfiguration(){
+        //await this.page.locator(this.inboxPrivacyConfigurationLocator).waitFor({ state: 'visible' });
+        return this.page.locator(this.inboxPrivacyConfigurationLocator);
+    }
+    removeAccountRedButton(){
+        return this.page.locator(this.removeAccountRedButtonLocator);
+    }
+    async removeAccountButton(){
+        return this.page.locator(this.removeAccountButtonLocator).click();
+    }
+    configureProxyButton(){
+        //failed hoile wait add kora lage 
+        return this.page.locator(this.configureProxyButtonLocator);
+    }
+    verifyYourProxySection(){
+        return this.page.locator(this.verifyYourProxySectionLocator);
+    }
+    threeDotButton(){
+        return this.page.locator(this.accountThreeDotLocator);
+    }
+    verificationRequired(){
+        return this.page.locator(this.verificationRequiredLocator);
     }
     async maxPostLikesDay(set_value){
         await this.sliderMove(this.maxPostLikesDaySliderLocator, this.maxConnectionRequestDayValueLocator,set_value);
