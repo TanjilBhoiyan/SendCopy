@@ -1,5 +1,6 @@
 import { ImprtFromCSVPage } from "../leadsPages/ImportFromCSVPage";
 
+import { test, expect } from '@playwright/test';
 export class LinkedinAccountPage{
     constructor(page){
         this.page = page;
@@ -47,8 +48,15 @@ export class LinkedinAccountPage{
         this.linkedinConversationLocator='//label[normalize-space()="Track and import all LinkedIn conversations"]';
         this.sendcopyConversationLocator='//label[normalize-space()="Track only conversations started from SendCopy"]'
         this.setPrivacyButtonLocator='//button[normalize-space()="Set Privacy"]';
+        this.statusFilterDropdownLocator='.lucide.lucide-chevron-down.size-4.opacity-50';
+        this.connectedStatusFilterLocator='//span[@class="truncate"][normalize-space()="Connected"]';
+        this.notconnectedStatusFilterLocator='//span[@class="truncate"][normalize-space()="Not Connected"]'
+        this.inCampaignStatusLocator='//span[@class="truncate"][normalize-space()="In Campaign"]';
+        this.inActiveStatusLocator='//span[@class="truncate"][normalize-space()="Inactive"]';
 
-
+    }
+    async statusFilterDropdown(){
+        await this.page.locator(this.statusFilterDropdownLocator).click();
     }
     async choosePrivacyMode(conversation){
         if(conversation==='Track and import all LinkedIn conversations'){
@@ -60,6 +68,37 @@ export class LinkedinAccountPage{
             await this.page.locator(this.setPrivacyButtonLocator).click();
         }
     }
+    async inActiveStatus(status){
+        await this.importFromCSVPage.selectOptionByText(this.inActiveStatusLocator, status);
+    }
+    async inCampaignStatus(status){
+        await this.importFromCSVPage.selectOptionByText(this.inCampaignStatusLocator, status);
+    }
+    async notConnectedStatus(status){
+        await this.importFromCSVPage.selectOptionByText(this.notconnectedStatusFilterLocator, status);
+    }
+    async connectedStatus(status){
+        await this.importFromCSVPage.selectOptionByText(this.connectedStatusFilterLocator, status);
+    }
+    async accountFilter(status) {
+        const rows = this.page.locator(this.allConnectedAccountsLocator);
+        const rowCount = await rows.count();
+        console.log(rowCount);
+        if(rowCount<1){
+            //await expect(this.page.getByText('No accounts found')).toBeVisible();
+            return 'No accounts found';
+        }
+        else{
+            for(let i=0;i<rowCount;i++){
+            const currentRow = rows.nth(i);
+            const statusText = await currentRow.innerText();
+            if(!statusText.includes(status)){
+                return false;
+            }
+        }
+        return true;
+        }
+    };
     async getLinkedinAccountStatus(status) {
         const rows = this.page.locator(this.allConnectedAccountsLocator);
         const rowCount = await rows.count();

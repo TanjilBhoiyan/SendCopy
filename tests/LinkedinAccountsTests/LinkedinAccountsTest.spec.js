@@ -178,7 +178,7 @@ test.describe('Linkedin Leads Test',()=>{
         await linkedinAccount.choosePrivacyMode('Track and import all LinkedIn conversations');
         await expect(page.getByText('Inbox privacy configured successfully')).toBeVisible();
     });
-    test('Check if select Linkedin Conversavtion from configure Inbox privacy,should showing all linkedin conversation in unibox', async ({ page }) => {
+    test('Check if select Linkedin conversations started from SendCopy,should showing all linkedin conversation in unibox', async ({ page }) => {
         const connectedRow = await linkedinAccount.getLinkedinAccountStatus('Connected');
         if(connectedRow){
             await connectedRow.locator('button').last().click();
@@ -187,13 +187,6 @@ test.describe('Linkedin Leads Test',()=>{
         await linkedinAccount.choosePrivacyMode('Track only conversations started from SendCopy');
         await expect(page.getByText('Inbox privacy configured successfully')).toBeVisible();
     });
-
-
-
-
-
-
-
 
     test('Try to set max follows/Day grater than 40', async ({ page }) => {
         await linkedinAccount.configureLimitButton();
@@ -269,7 +262,33 @@ test.describe('Linkedin Leads Test',()=>{
         await linkedinAccount.updateSettingsButton().click();
         await expect(page.getByText('Account limits updated successfully')).toBeVisible();
     });
-
+    test('Check when user want to see only Connected accounts', async ({ page }) => {
+        await linkedinAccount.statusFilterDropdown();
+        await linkedinAccount.connectedStatus('Connected');
+        //await linkedinAccount.connectedAccount('Connected');
+        expect(await linkedinAccount.accountFilter('Connected')).toBeTruthy();
+    });
+    test('Check when user want to see only Not Connected accounts', async ({ page }) => {
+        await linkedinAccount.statusFilterDropdown();
+        await linkedinAccount.notConnectedStatus('Not Connected');
+        const result = await linkedinAccount.accountFilter('Not Connected');
+        //expect(await linkedinAccount.connectedAccount('Not Connected')).toBeTruthy();
+        expect(result === true || result ==='No accounts found').toBeTruthy();
+    });
+    test('Check when user want to see only In Campaign accounts', async ({ page }) => {
+        await linkedinAccount.statusFilterDropdown();
+        await linkedinAccount.inCampaignStatus('In Campaign');
+        const result = await linkedinAccount.accountFilter('In Campaign');
+        //expect(await linkedinAccount.connectedAccount('Not Connected')).toBeTruthy();
+        expect(result === true || result ==='No accounts found').toBeTruthy();
+    });
+    test('Check when user want to see only Inactive accounts', async ({ page }) => {
+        await linkedinAccount.statusFilterDropdown();
+        await linkedinAccount.inActiveStatus('Inactive');
+        const result = await linkedinAccount.accountFilter('Inactive');
+        //expect(await linkedinAccount.connectedAccount('Not Connected')).toBeTruthy();
+        expect(result === true || result ==='No accounts found').toBeTruthy();
+    });
 })
 
 // npx playwright test tests/LinkedinAccountsTests/LinkedinAccountsTest.spec.js --project chromium --debug
