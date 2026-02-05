@@ -33,8 +33,8 @@ export class LinkedinLeadsPage{
         this.leadsLocator='(//div[@class="flex items-center gap-2 cursor-pointer"])[1]';
 
     }
-    async leads(){
-        await this.page.locator(this.leadsLocator).click();
+    leads(){
+        return this.page.locator(this.leadsLocator);
     }
     async excludeFromList(leads_name){
         await this.page.locator(this.excludeFromListButtonLocator).click();

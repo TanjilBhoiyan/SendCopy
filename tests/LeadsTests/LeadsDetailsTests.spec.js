@@ -26,7 +26,7 @@ test.describe('Linkedin Leads Test',()=>{
 
     // })
     test('Verify single lead delete option',async ({page})=>{
-        await linkedinleads.leads();
+        await linkedinleads.leads().click();
         await page.waitForTimeout(1000);
         await leadsDetailsPage.leadsDeleteIcon().click();
         await page.waitForTimeout(1000);
@@ -34,12 +34,12 @@ test.describe('Linkedin Leads Test',()=>{
         await expect(page.getByText('Lead deleted successfully')).toBeVisible();
     })
     test('Verify the search leads functionality',async ({page})=>{
-        await linkedinleads.leads();
+        await linkedinleads.leads().click();
         await leadsDetailsPage.searchLeads('Chocolate Palace');
         await expect(await leadsDetailsPage.searchedRow()).toHaveCount(1);
     })
     test('Verify csv file will download after click on export to csv',async ({page})=>{
-        await linkedinleads.leads();
+        await linkedinleads.leads().click();
         await leadsDetailsPage.exportToCSV().click();
         await expect(page.getByText('Preparing CSV export')).toBeVisible();
         await expect(page.getByText('CSV file "company leads_leads_2026-01-09.csv" has been downloaded')).toBeVisible();
