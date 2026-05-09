@@ -40,7 +40,6 @@ test.describe('Login Tests',()=>{
         await login.login('kheladhula12345@gmail.com','Shakil123@#?');
         // Assertion: Error message visible
         await expect(page.getByText('invalid credentials')).toBeVisible();
-
     })
 })
 

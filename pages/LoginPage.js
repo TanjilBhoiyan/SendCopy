@@ -18,7 +18,7 @@ export class LoginPage {
     }
 
     async gotoLoginPage(){
-        await this.page.goto('https://app.sendcopy.ai');
+        await this.page.goto('https://qaapp.sendcopy.ai/');
     }
 
     async login(user_email , user_password){
