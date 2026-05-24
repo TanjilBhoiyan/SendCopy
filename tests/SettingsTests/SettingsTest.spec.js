@@ -17,13 +17,19 @@ test.describe('Settings page test',()=>{
 
         
     })
-    // test('',async ({})=>{
-
-    // })
-    // test('',async ({})=>{
-
-    // })
-    test.only('claim update plan',async ({})=>{
+    test.only('Check the Download invoice button is working',async ({})=>{
+        await settings.billingButton();
+        await settings.invoice();
+        await settings.threeDotButton();
+        await settings.downloadButton();
+    })
+    test('Check the View invoice is working',async ({})=>{
+        await settings.billingButton();
+        await settings.invoice();
+        await settings.threeDotButton();
+        await settings.viewButton();
+    })
+    test('claim update plan',async ({})=>{
         await settings.billingButton();
         await settings.updatePlan();
         await settings.ContinueButton();

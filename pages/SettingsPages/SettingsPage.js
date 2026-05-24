@@ -10,6 +10,22 @@ export class SettingsPage{
         this.SkipForNowButtonLocator='//button[normalize-space()="Skip for now"]';
         this.UpdatePlanButtonLocator='body > div:nth-child(11) > main:nth-child(2) > div:nth-child(2) > section:nth-child(1) > div:nth-child(2) > div:nth-child(2) > div:nth-child(1) > div:nth-child(4) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(3) > div:nth-child(1) > button:nth-child(2)';
         this.ContinueButtonLocator='//button[normalize-space()="Continue"]';
+        this.InvoicesLocator='(//button[normalize-space()="Invoices"])[1]';
+        this.areaExpandedButtonLocator='(//button[@type="button"])[8]';
+        this.viewButtonLocator='//span[normalize-space()="View"]';
+        this.downloadButtonLocator='//span[normalize-space()="Download"]';
+    }
+    async downloadButton(){
+        await this.page.locator(this.downloadButtonLocator).click();
+    }
+    async viewButton(){
+        await this.page.locator(this.viewButtonLocator).click();
+    }
+    async threeDotButton(){
+        await this.page.locator(this.areaExpandedButtonLocator).click();
+    }
+    async invoice(){
+        await this.page.locator(this.InvoicesLocator).click();
     }
     async ContinueButton(){
         await this.page.locator(this.ContinueButtonLocator).click();
