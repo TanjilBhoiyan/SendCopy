@@ -23,16 +23,20 @@ test.describe('Settings page test',()=>{
     // test('',async ({})=>{
 
     // })
-    // test('',async ({})=>{
+    test.only('claim update plan',async ({})=>{
+        await settings.billingButton();
+        await settings.updatePlan();
+    })
+    test('Should open linkedin sendcopy profile in a new tab after click on community',async ({page,context})=>{
+    const [newPage] = await Promise.all([
+        context.waitForEvent('page'),
+        settings.communityButton()
+    ]);
+    await newPage.waitForLoadState();
+    await expect(newPage).toHaveURL('https://www.linkedin.com/company/sendcopy-ai');
 
-    // })
-    // test('Should open linkedin sendcopy profile in a new tab after click on community',async ({page,context})=>{
-    //     const context = await browser.newContext;
-
-    //     const settingsPage = await context.newPage();
-
-    // })
-    test.only('Check skip for now button is working when Watching guidline',async ({})=>{
+    })
+    test('Check skip for now button is working when Watching guidline',async ({})=>{
         await settings.WatchGuidline();
         //await expect(getByText('all set! Enjoy SendCopy.')).toBeVisible();
     })
