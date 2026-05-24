@@ -26,6 +26,7 @@ test.describe('Settings page test',()=>{
     test.only('claim update plan',async ({})=>{
         await settings.billingButton();
         await settings.updatePlan();
+        await settings.ContinueButton();
     })
     test('Should open linkedin sendcopy profile in a new tab after click on community',async ({page,context})=>{
     const [newPage] = await Promise.all([

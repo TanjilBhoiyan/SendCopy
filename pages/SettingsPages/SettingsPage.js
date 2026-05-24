@@ -8,11 +8,14 @@ export class SettingsPage{
         this.WatchGuidelineLocator='a[href="/dashboard?watch-tutorial"]';
         this.LogoutButtonLocator='//aside//button[span="Log out"]';
         this.SkipForNowButtonLocator='//button[normalize-space()="Skip for now"]';
-        this.UpdatePlanButtonLocator='//button[normalize-space()="Upgrade Plan"]';
+        this.UpdatePlanButtonLocator='body > div:nth-child(11) > main:nth-child(2) > div:nth-child(2) > section:nth-child(1) > div:nth-child(2) > div:nth-child(2) > div:nth-child(1) > div:nth-child(4) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) > div:nth-child(3) > div:nth-child(1) > button:nth-child(2)';
         this.ContinueButtonLocator='//button[normalize-space()="Continue"]';
     }
+    async ContinueButton(){
+        await this.page.locator(this.ContinueButtonLocator).click();
+    }
     async updatePlan(){
-        await this.page.locator(this.UpdatePlanButtonLocator).click();
+        await this.page.getByRole('button', { name: 'Choose Plan' }).nth(2).click();
     }
     async billingButton(){
         await this.page.locator(this.BillingLocator).click();
