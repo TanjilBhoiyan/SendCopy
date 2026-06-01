@@ -10,14 +10,18 @@ test.describe('Linkedin Leads Test',()=>{
     test.beforeEach(async ({page})=>{
         const login = new LoginPage(page);
         await login.gotoLoginPage();
-        await login.login('shakilbhoiyan47@gmail.com','Shakil123@#?');
+        await login.login('regressiontest5@gmail.com','Shakil123@#?');
         chatButton = new chatPage(page);
         await chatButton.chatButton();
 
         // create object for generate leads page
     })
-    test('',async ({page})=>{
-        
+    test.only('Check the conversation profile picture are visible or not',async ({page})=>{
+        const count = await chatButton.profilePic.count();
+        //console.log(count);
+        for (let i = 0; i < count; i++) {
+            await expect(chatButton.profilePic.nth(i)).toBeVisible();
+        }
     })
 })
 

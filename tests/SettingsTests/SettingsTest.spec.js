@@ -17,7 +17,10 @@ test.describe('Settings page test',()=>{
 
         
     })
-    test.only('Check the Download invoice button is working',async ({})=>{
+    // test('',async({})=>{
+
+    // })
+    test('Check the Download invoice button is working',async ({})=>{
         await settings.billingButton();
         await settings.invoice();
         await settings.threeDotButton();
