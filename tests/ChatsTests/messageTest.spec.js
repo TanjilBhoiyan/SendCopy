@@ -16,7 +16,13 @@ test.describe('Linkedin Leads Test',()=>{
 
         // create object for generate leads page
     })
-    test.only('Check the conversation profile picture are visible or not',async ({page})=>{
+    test.only('when click on mark as unread should showing unread flag on the conversation',async ({page})=>{
+        await chatButton.conversationThreeDotButton();
+        await chatButton.markAsUnread();
+        await expect(page.getByText('Conversation marked as unread')).toBeVisible();
+        //await expect(chatButton.unSeenFlag()).toBeEnabled();
+    })
+    test('Check the conversation profile picture are visible or not',async ({page})=>{
         const count = await chatButton.profilePic.count();
         //console.log(count);
         for (let i = 0; i < count; i++) {
