@@ -16,10 +16,12 @@ test.describe('Linkedin Leads Test',()=>{
 
         // create object for generate leads page
     })
-    test.only('Conversation are moved to archived after click on archive',async ({page})=>{
-        
+    test('Conversation are moved to archived after click on archive',async ({page})=>{
+        await chatButton.conversationThreeDotButton();
+        await chatButton.archive();
+        await expect(page.getByText('Conversation archived')).toBeVisible();
     })
-    test.only('When click on mar as read should not showing unread flag on the conversation',async ({page})=>{
+    test('When click on mar as read should not showing unread flag on the conversation',async ({page})=>{
         await chatButton.conversationThreeDotButton();
         await chatButton.markAsRead();
         await expect(page.getByText('Conversation marked as read')).toBeVisible();

@@ -8,6 +8,10 @@ export class chatPage{
         this.conversationThreeDotButtonLocator='(//button[contains(@type,"button")])[4]';
         this.markAsUnreadLocator='//span[normalize-space()="Mark as Unread"]';
         this.markAsReadLocator='//span[normalize-space()="Mark as Read"]';
+        this.archiveLocator='//span[normalize-space()="Archive"]';
+    }
+    async archive(){
+        await this.page.locator(this.archiveLocator).click();
     }
     async markAsRead(){
         await this.page.locator(this.markAsReadLocator).click();
