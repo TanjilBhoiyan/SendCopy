@@ -7,6 +7,10 @@ export class chatPage{
         this.unSeenFlagLocator='(//span[@class="text-xs text-white"][normalize-space()="1"])[1]';
         this.conversationThreeDotButtonLocator='(//button[contains(@type,"button")])[4]';
         this.markAsUnreadLocator='//span[normalize-space()="Mark as Unread"]';
+        this.markAsReadLocator='//span[normalize-space()="Mark as Read"]';
+    }
+    async markAsRead(){
+        await this.page.locator(this.markAsReadLocator).click();
     }
     async unSeenFlag(){
         return this.page.locator(this.unSeenFlagLocator);
