@@ -16,6 +16,45 @@ test.describe('Linkedin Leads Test',()=>{
 
         // create object for generate leads page
     })
+    test.only('check send button is not enable if select gretter than 5 mb file',async({page})=>{
+        const fileChooserPromise = page.waitForEvent('filechooser');
+        await chatButton.attachment().click();
+
+        const filechooser = await fileChooserPromise;
+        await filechooser.setFiles([
+            'UploadFiles\\attachment1.png',
+            'UploadFiles\\attachment2.png',
+            'UploadFiles\\attachment3.png',
+            'UploadFiles\\attachment4.png',
+            'UploadFiles\\attachment5.png',
+            'UploadFiles\\attachment6.png',
+            'UploadFiles\\attachment7.png',
+            'UploadFiles\\attachment8.JPG',
+            'UploadFiles\\attachment9.JPG'
+        ])
+        await expect(chatButton.sendButton()).toBeDisabled();
+    })
+    test('Send a attachment',async ({page})=>{
+        const fileChooserProise = page.waitForEvent('filechooser');
+
+        await chatButton.attachment().click();
+
+        const filechooser = await fileChooserProise;
+        await filechooser.setFiles('UploadFiles\\attachment1.png');
+        await chatButton.sendButton().click();
+    })
+    test('Send a test message',async ({page})=>{
+        await chatButton.writeMessage('Hello this is test message');
+        await chatButton.sendButton().click();
+    })
+    // test('Edit message',async ({page})=>{
+
+    // })
+    test('Delete the conversation',async ({page})=>{
+        await chatButton.conversationThreeDotButton();
+        await chatButton.conversationDelete();
+        await expect(page.getByText('Conversation deleted')).toBeVisible();
+    })
     test('Conversation are moved to archived after click on archive',async ({page})=>{
         await chatButton.conversationThreeDotButton();
         await chatButton.archive();

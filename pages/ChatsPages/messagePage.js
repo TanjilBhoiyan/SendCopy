@@ -9,6 +9,22 @@ export class chatPage{
         this.markAsUnreadLocator='//span[normalize-space()="Mark as Unread"]';
         this.markAsReadLocator='//span[normalize-space()="Mark as Read"]';
         this.archiveLocator='//span[normalize-space()="Archive"]';
+        this.conversationDeleteLocator='//span[normalize-space()="Delete"]';
+        this.writeMessageLocator='//textarea[@placeholder="Write message..."]';
+        this.sendButtonLocator='//button[normalize-space()="Send"]';
+        this.attachmentButtonLocator='//div[@class="flex items-center"]//div[1]//button[1]';
+    }
+    attachment(){
+        return this.page.locator(this.attachmentButtonLocator);
+    }
+    sendButton(){
+        return this.page.locator(this.sendButtonLocator);
+    }
+    async writeMessage(text){
+        await this.page.locator(this.writeMessageLocator).fill(text);
+    }
+    async conversationDelete(){
+        await this.page.locator(this.conversationDeleteLocator).click();
     }
     async archive(){
         await this.page.locator(this.archiveLocator).click();
