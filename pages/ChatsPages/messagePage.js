@@ -13,6 +13,10 @@ export class chatPage{
         this.writeMessageLocator='//textarea[@placeholder="Write message..."]';
         this.sendButtonLocator='//button[normalize-space()="Send"]';
         this.attachmentButtonLocator='//div[@class="flex items-center"]//div[1]//button[1]';
+        this.overSizeAttachmentErrorLocator='//span[@class="text-xs text-red-700"]';
+    }
+    overSizeAttachmentError(){
+        return this.page.locator(this.overSizeAttachmentErrorLocator);
     }
     attachment(){
         return this.page.locator(this.attachmentButtonLocator);

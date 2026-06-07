@@ -16,7 +16,16 @@ test.describe('Linkedin Leads Test',()=>{
 
         // create object for generate leads page
     })
-    test.only('check send button is not enable if select gretter than 5 mb file',async({page})=>{
+    test.only('If try to send greter than 3 mb individual picture',async ({page})=>{
+        const filChooserPromise = page.waitForEvent('filechooser');
+        await chatButton.attachment().click();
+
+        const filechooser = await filChooserPromise;
+        await filechooser.setFiles('UploadFiles\\attachment10.JPG');
+        await expect(chatButton.sendButton()).toBeDisabled();
+        await expect(chatButton.overSizeAttachmentError()).toBeVisible();
+    })
+    test('check send button is not enable if select gretter than 5 mb file',async({page})=>{
         const fileChooserPromise = page.waitForEvent('filechooser');
         await chatButton.attachment().click();
 
