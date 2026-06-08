@@ -11,14 +11,22 @@ test.describe('Linkedin Leads Test',()=>{
     test.beforeEach(async ({page})=>{
         const login = new LoginPage(page);
         await login.gotoLoginPage();
-        await login.login('shakilbhoiyan47@gmail.com','Shakil123@#?');
+        await login.login('regressiontest5@gmail.com','Shakil123@#?');
         campaignButton = new CampaignPage(page);
         await campaignButton.campaignButton();
 
         // create object for generate leads page
     })
-    test('',async ({page})=>{
-        
+    test.only('Launch a successful campaign',async ({page})=>{
+        await campaignButton.createCampaign();
+        await campaignButton.campaignName("Automation_campaign_test");
+        await campaignButton.selectSender();
+        await campaignButton.senderLimitConfigure();
+        await campaignButton.senderLimitSaveButton();
+        await campaignButton.senderScedule();
+        await campaignButton.updateScheduleButton();
+        await campaignButton.senderSceduleCrossButton();
+        await campaignButton.continueButton();
     })
 })
 

@@ -250,9 +250,11 @@ export class LinkedinAccountPage{
     connectAccount(){
         return this.page.locator(this.connectAccountButtonLocator);
     }
+    
     async selectCountry(country){
         await this.importFromCSVPage.selectOptionByText(this.selectCountryLocator, country);
     }
+
     async inboxPrivacyConfiguration(text){
         await this.importFromCSVPage.selectOptionByText(this.privacyConfigurationLocator , text );
     }
