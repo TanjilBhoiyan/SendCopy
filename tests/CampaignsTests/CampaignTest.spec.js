@@ -27,6 +27,13 @@ test.describe('Linkedin Leads Test',()=>{
         await campaignButton.updateScheduleButton();
         await campaignButton.senderSceduleCrossButton();
         await campaignButton.continueButton();
+        await campaignButton.selectLeadLeads('seedlink leads');
+        await campaignButton.continueButton();
+        await campaignButton.addActionButton();
+        await campaignButton.ifOpenProfile();
+        await campaignButton.continueButton();
+        await campaignButton.launchCampaign();
+        await expect(page.getByText('Campaign started successfully')).toBeVisible();
     })
 })
 
