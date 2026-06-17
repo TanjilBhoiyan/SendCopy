@@ -1,7 +1,7 @@
 import { test , expect } from '@playwright/test';
 import { LoginPage } from '../../pages/LoginPage';
 import { AnalyticsPage } from '../../pages/AnalyticsPages/AnalyticsPage';
-
+import testData from '../../testData/testData.json';
 test.describe.configure({mode:'serial'});
 
 test.describe('Linkedin Leads Test',()=>{

@@ -1,7 +1,7 @@
 import { test , expect } from '@playwright/test';
 import { LoginPage } from '../../pages/LoginPage';
 import { SettingsPage } from '../../pages/SettingsPages/SettingsPage';
-
+import testData from '../../testData/testData.json';
 
 test.describe.configure({mode:'serial'});
 

@@ -21,5 +21,19 @@
   },
   "login": {
     "email":"xyzbhoiyan@gmail.com"
+  },
+  "importFromCSV":{
+    "profileUrl":"Profile URL",
+    "location":"Location",
+    "companyURL":"Company URL",
+    "emailAddress":"Email Address",
+    "firstName":"First Name",
+    "lastName":"Last Name",
+    "headline":"Headline",
+    "companyName":"Company Name",
+    "company":"Company",
+    "about":"About",
+    "peopleImportedLeads":"people imported leads",
+    "companyImportedLeads":"Company imported leads"
   }
 }
