@@ -6,7 +6,7 @@ import { LinkedInSearchBarPage } from '../../pages/leadsPages/LinkedInSearchBarP
 import { LinkedinEventAttendeesPage} from '../../pages/leadsPages/LinkedInEventAttendeesPage';
 import { LinkedinSearchCompanies } from '../../pages/leadsPages/LinkedInSearchCompaniesPage';
 import { ImprtFromCSVPage } from '../../pages/leadsPages/ImportFromCSVPage';
-
+import testData from '../../testData/testData.json'
 test.describe.configure({mode:'serial'});
 
 test.describe('Linkedin Leads Test',()=>{
@@ -41,7 +41,7 @@ test.describe('Linkedin Leads Test',()=>{
         await linkedinleads.addLeadsButton();
         await generateLeads.continueButton().click();
         await linkedinsearchbar.listNameInputField('automation lead1');
-        await linkedinsearchbar.selectSenderName('Shakil Bhuiyan');
+        await linkedinsearchbar.selectSenderName(testData.linkedinEventAttendes.selectSenderName);
         //await page.waitForTimeout(20000);
         await linkedinsearchbar.searchUrlInput('https://www.linkedin.com/search/results/people/?keywords=software%20engineer&origin=SWITCH_SEARCH_VERTICAL&sid=-Tu');
         await linkedinsearchbar.startImportButton().click();
@@ -56,8 +56,8 @@ test.describe('Linkedin Leads Test',()=>{
         await linkedinleads.addLeadsButton();
         await generateLeads.linkedinEventAttendees().click();
         await generateLeads.continueButton().click();
-        await linkedineventattendees.listNameInputField('Event_leads');
-        await linkedineventattendees.selectSenderName('Shakil Bhuiyan');
+        await linkedineventattendees.listNameInputField(testData.linkedinLeads.event_leads);
+        await linkedineventattendees.selectSenderName(testData.linkedinLeads.selectSenderName);
         await linkedineventattendees.eventAttendeesUrlInput('https://www.linkedin.com/voyager/api/graphql?variables=(start:0,origin:EVENT_PAGE_CANNED_SEARCH,query:(flagshipSearchIntent:SEARCH_SRP,queryParameters:List((key:eventAttending,value:List(7408867606096437249)),(key:resultType,value:List(PEOPLE))),includeFiltersInResponse:false))&queryId=voyagerSearchDashClusters.ef3d0937fb65bd7812e32e5a85028e79');
         await linkedineventattendees.startImportButton().click();
         await expect(page.getByText('Started importing leads for linkedin event')).toBeVisible();
@@ -67,7 +67,7 @@ test.describe('Linkedin Leads Test',()=>{
         await generateLeads.linkedinPostReactors().click();
         await generateLeads.continueButton().click();
         await linkedinsearchbar.listNameInputField('Post reactor lead 3');
-        await linkedinsearchbar.selectSenderName('Shakil Bhuiyan')
+        await linkedinsearchbar.selectSenderName(testData.linkedinLeads.selectSenderName)
         await linkedinsearchbar.searchUrlInput('https://www.linkedin.com/posts/universal-software_were-hiring-universal-software-is-looking-activity-7400149143756808192-jPI2?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEy3CcIBdOxcMO3UPmoZ-lvSiLjZgjOsA0A');
         await page.waitForTimeout(2000);
         await linkedinsearchbar.startImportButton().click();
@@ -80,7 +80,7 @@ test.describe('Linkedin Leads Test',()=>{
         await generateLeads.linkedinSearchCompanies().click();
         await generateLeads.continueButton().click();
         await linkedinsearchbar.listNameInputField('Companies lead 1');
-        await linkedinsearchbar.selectSenderName('Shakil Bhuiyan');
+        await linkedinsearchbar.selectSenderName(testData.linkedinLeads.selectSenderName);
         await linkedinsearchcompanies.searchQueryInput('Chocolate');
         await page.waitForTimeout(2000);
         await linkedinsearchbar.startImportButton().click();
@@ -93,15 +93,15 @@ test.describe('Linkedin Leads Test',()=>{
         await generateLeads.importFromCSV().click();
         await generateLeads.continueButton().click();
         await imprtfromcsvpage.uploadSpreadSheet().setInputFiles('UploadFiles\\seedlink leads.csv');
-        await imprtfromcsvpage.firstDropdownItem('Profile URL');
-        await imprtfromcsvpage.secondDropdownItem('First Name');
-        await imprtfromcsvpage.thirdDropdownItem('Last Name');
-        await imprtfromcsvpage.fourthDropdownItem('Location');
-        await imprtfromcsvpage.fifthDropdownItem('Headline');
-        await imprtfromcsvpage.sixthDropdownItem('Company');
-        await imprtfromcsvpage.seventhDropdownItem('About');
-        await imprtfromcsvpage.eighthDropdownItem('Email Address');
-        await imprtfromcsvpage.createEmptyList('people imported leads');
+        await imprtfromcsvpage.firstDropdownItem(testData.linkedinLeads.profileUrl);
+        await imprtfromcsvpage.secondDropdownItem(testData.linkedinLeads.firstName);
+        await imprtfromcsvpage.thirdDropdownItem(testData.linkedinLeads.lastName);
+        await imprtfromcsvpage.fourthDropdownItem(testData.linkedinLeads.location);
+        await imprtfromcsvpage.fifthDropdownItem(testData.linkedinLeads.headline);
+        await imprtfromcsvpage.sixthDropdownItem(testData.linkedinLeads.company);
+        await imprtfromcsvpage.seventhDropdownItem(testData.linkedinLeads.about);
+        await imprtfromcsvpage.eighthDropdownItem(testData.linkedinLeads.emailAddress);
+        await imprtfromcsvpage.createEmptyList(testData.linkedinLeads.peopleImportedLeads);
         await imprtfromcsvpage.importLeadsButton().click();
         await expect(page.getByText('Success')).toBeVisible();
         // successfully import howar por leads importing validation kora hoy nai(Leads page e)
@@ -112,14 +112,14 @@ test.describe('Linkedin Leads Test',()=>{
         await generateLeads.continueButton().click();
         await imprtfromcsvpage.companyButton().click();
         await imprtfromcsvpage.uploadSpreadSheet().setInputFiles('UploadFiles\\company leads.csv');
-        await imprtfromcsvpage.firstDropdownItem('Company Name');
-        await imprtfromcsvpage.secondDropdownItem('Company URL');
-        await imprtfromcsvpage.thirdDropdownItem('Profile URL');
-        await imprtfromcsvpage.fourthDropdownItem('Location');
-        await imprtfromcsvpage.fifthDropdownItem('Headline');
-        await imprtfromcsvpage.sixthDropdownItem('About');
-        await imprtfromcsvpage.seventhDropdownItem('Email Address');
-        await imprtfromcsvpage.createEmptyList('Company imported leads');
+        await imprtfromcsvpage.firstDropdownItem(testData.linkedinLeads.companyName);
+        await imprtfromcsvpage.secondDropdownItem(testData.linkedinLeads.companyURL);
+        await imprtfromcsvpage.thirdDropdownItem(testData.linkedinLeads.profileUrl);
+        await imprtfromcsvpage.fourthDropdownItem(testData.linkedinLeads.location);
+        await imprtfromcsvpage.fifthDropdownItem(testData.linkedinLeads.headline);
+        await imprtfromcsvpage.sixthDropdownItem(testData.linkedinLeads.about);
+        await imprtfromcsvpage.seventhDropdownItem(testData.linkedinLeads.emailAddress);
+        await imprtfromcsvpage.createEmptyList(testData.linkedinLeads.companyImportedLeads);
         await imprtfromcsvpage.importLeadsButton().click();
         await expect(page.getByText('Success')).toBeVisible();
         // successfully import howar por leads importing validation kora hoy nai(Leads page e)
@@ -175,7 +175,7 @@ test.describe('Linkedin Leads Test',()=>{
         await linkedinleads.threeDotButton().click();
         await linkedinleads.leadListRename().click();
         await linkedinleads.newListNameInput().clear();
-        await linkedinleads.newListNameInput().fill('List name Renamed');
+        await linkedinleads.newListNameInput().fill(testData.linkedinLeads.newListNameInput);
         await linkedinleads.renameButton().click();
         await expect(page.getByText('Lead list renamed successfully')).toBeVisible();
     })
@@ -197,7 +197,7 @@ test.describe('Linkedin Leads Test',()=>{
     })
     test('Verify Combine lists inside the three dots',async ({page})=>{
         await linkedinleads.threeDotButton().click();
-        await linkedinleads.combineLists('people imported leads');
+        await linkedinleads.combineLists(testData.linkedinLeads.peopleImportedLeads);
         await expect(page.getByText('Lead lists combined successfully')).toBeVisible();
     })
 

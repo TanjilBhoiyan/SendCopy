@@ -3,6 +3,11 @@ import { LoginPage } from '../../pages/LoginPage';
 import { LinkedinLeadsPage } from '../../pages/leadsPages/LinkedinLeadsPage';
 import { GenerateLeadsPage } from '../../pages/leadsPages/GenerateLeadsPage';
 import { LinkedinEventAttendeesPage} from '../../pages/leadsPages/LinkedInEventAttendeesPage';
+import testData from '../../testData/testData.json'
+
+
+
+
 
 test.describe.configure({mode:'serial'});
 
@@ -28,9 +33,9 @@ test.describe('Linkedin Leads Test',()=>{
         await linkedinleads.addLeadsButton();
         await generateLeads.linkedinEventAttendees().click();
         await generateLeads.continueButton().click();
-        //await linkedineventattendees.listNameInputField('Event_leads');
-        await linkedineventattendees.selectSenderName('Shakil Bhuiyan');
-        await linkedineventattendees.eventAttendeesUrlInput('asasdasdq3asdsd');
+        //await linkedineventattendees.listNameInputField(testData.linkedinLeads.event_leads);
+        await linkedineventattendees.selectSenderName(testData.linkedinLeads.shakilBhuiyan);
+        await linkedineventattendees.eventAttendeesUrlInput(testData.linkedinLeads.NotUrl);
         await linkedineventattendees.startImportButton().click();
         await expect(page.getByText('List name is required')).toBeVisible();
     })
@@ -38,9 +43,9 @@ test.describe('Linkedin Leads Test',()=>{
         await linkedinleads.addLeadsButton();
         await generateLeads.linkedinEventAttendees().click();
         await generateLeads.continueButton().click();
-        await linkedineventattendees.listNameInputField('Event_leads');
-        //await linkedineventattendees.selectSenderName('Shakil Bhuiyan');
-        await linkedineventattendees.eventAttendeesUrlInput('asasdasdq3asdsd');
+        await linkedineventattendees.listNameInputField(testData.linkedinLeads.event_leads);
+        //await linkedineventattendees.selectSenderName(testData.linkedinEventAttendes.selectSenderName);
+        await linkedineventattendees.eventAttendeesUrlInput(testData.linkedinLeads.NotUrl);
         await linkedineventattendees.startImportButton().click();
         await expect(page.getByText('At least one sender must be selected')).toBeVisible();
     })
@@ -48,8 +53,8 @@ test.describe('Linkedin Leads Test',()=>{
         await linkedinleads.addLeadsButton();
         await generateLeads.linkedinEventAttendees().click();
         await generateLeads.continueButton().click();
-        await linkedineventattendees.listNameInputField('Event_leads');
-        await linkedineventattendees.selectSenderName('Shakil Bhuiyan');
+        await linkedineventattendees.listNameInputField(testData.linkedinLeads.event_leads);
+        await linkedineventattendees.selectSenderName(testData.linkedinLeads.selectSenderName);
         await linkedineventattendees.eventAttendeesUrlInput('https://www.linkedin.com/voyager/api/variables=(start:0,origin:EVENT_PAGE_CANNED_SEARCH,query:(flagshipSearchIntent:SEARCH_SRP,queryParameters:List((key:eventAttending,value:List(7408867606096437249)),(key:resultType,value:List(PEOPLE))),includeFiltersInResponse:false))&queryId=voyagerSearchDashClusters.ef3d0937fb65bd7812e32e5a85028e79');
         await linkedineventattendees.startImportButton().click();
         await expect(page.getByText('URL must be a valid LinkedIn GraphQL API URL')).toBeVisible();
@@ -58,9 +63,9 @@ test.describe('Linkedin Leads Test',()=>{
         await linkedinleads.addLeadsButton();
         await generateLeads.linkedinEventAttendees().click();
         await generateLeads.continueButton().click();
-        await linkedineventattendees.listNameInputField('Event_leads');
-        await linkedineventattendees.selectSenderName('Shakil Bhuiyan');
-        await linkedineventattendees.eventAttendeesUrlInput('asasdasdq3asdsd');
+        await linkedineventattendees.listNameInputField(testData.linkedinLeads.event_leads);
+        await linkedineventattendees.selectSenderName(testData.linkedinLeads.selectSenderName);
+        await linkedineventattendees.eventAttendeesUrlInput(testData.linkedinLeads.NotUrl);
         await linkedineventattendees.startImportButton().click();
         await expect(page.getByText('Please enter a valid URL')).toBeVisible();
     })

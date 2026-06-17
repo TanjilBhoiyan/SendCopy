@@ -22,7 +22,7 @@
   "login": {
     "email":"xyzbhoiyan@gmail.com"
   },
-  "importFromCSV":{
+  "linkedinLeads":{
     "profileUrl":"Profile URL",
     "location":"Location",
     "companyURL":"Company URL",
@@ -34,6 +34,11 @@
     "company":"Company",
     "about":"About",
     "peopleImportedLeads":"people imported leads",
-    "companyImportedLeads":"Company imported leads"
+    "companyImportedLeads":"Company imported leads",
+    "event_leads":"Event_leads",
+    "selectSenderName":"Shakil Bhuiyan",
+    "newListNameInput":"List name Renamed",
+    "NotUrl":"abcdefgh",
+    "listInputField":"automation lead1"
   }
 }

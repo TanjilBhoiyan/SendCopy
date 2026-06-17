@@ -6,6 +6,7 @@ import { LinkedInSearchBarPage } from '../../pages/leadsPages/LinkedInSearchBarP
 import { LinkedinEventAttendeesPage} from '../../pages/leadsPages/LinkedInEventAttendeesPage';
 import { LinkedinSearchCompanies } from '../../pages/leadsPages/LinkedInSearchCompaniesPage';
 import { ImprtFromCSVPage } from '../../pages/leadsPages/ImportFromCSVPage';
+import testData from '../../testData/testData.json'
 
 test.describe.configure({mode:'serial'});
 

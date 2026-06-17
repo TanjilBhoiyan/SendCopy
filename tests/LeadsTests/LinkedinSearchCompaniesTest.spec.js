@@ -4,7 +4,7 @@ import { LinkedinLeadsPage } from '../../pages/leadsPages/LinkedinLeadsPage';
 import { GenerateLeadsPage } from '../../pages/leadsPages/GenerateLeadsPage';
 import { LinkedInSearchBarPage } from '../../pages/leadsPages/LinkedInSearchBarPage';
 import { LinkedinSearchCompanies } from '../../pages/leadsPages/LinkedInSearchCompaniesPage';
-
+import testData from '../../testData/testData.json'
 
 test.describe.configure({mode:'serial'});
 
@@ -35,7 +35,7 @@ test.describe('Linkedin Leads Test',()=>{
         await generateLeads.linkedinSearchCompanies().click();
         await generateLeads.continueButton().click();
         //await linkedinsearchbar.listNameInputField('Companies lead 1');
-        await linkedinsearchbar.selectSenderName('Shakil Bhuiyan');
+        await linkedinsearchbar.selectSenderName(testData.linkedinLeads.selectSenderName);
         await linkedinsearchcompanies.searchQueryInput('Chocolate');
         await page.waitForTimeout(2000);
         await linkedinsearchbar.startImportButton().click();
@@ -46,7 +46,7 @@ test.describe('Linkedin Leads Test',()=>{
         await generateLeads.linkedinSearchCompanies().click();
         await generateLeads.continueButton().click();
         await linkedinsearchbar.listNameInputField('Companies lead 1');
-        await linkedinsearchbar.selectSenderName('Shakil Bhuiyan');
+        await linkedinsearchbar.selectSenderName(testData.linkedinLeads.selectSenderName);
         await linkedinsearchcompanies.searchQueryInput('Chocolate');
         await page.waitForTimeout(2000);
         await linkedinsearchbar.startImportButton().click();
@@ -57,7 +57,7 @@ test.describe('Linkedin Leads Test',()=>{
         await generateLeads.linkedinSearchCompanies().click();
         await generateLeads.continueButton().click();
         await linkedinsearchbar.listNameInputField('Companies lead 1');
-        await linkedinsearchbar.selectSenderName('Shakil Bhuiyan');
+        await linkedinsearchbar.selectSenderName(testData.linkedinLeads.selectSenderName);
         await linkedinsearchcompanies.searchQueryInput('');
         await page.waitForTimeout(2000);
         await linkedinsearchbar.startImportButton().click();

@@ -3,6 +3,8 @@ import { LoginPage } from '../../pages/LoginPage';
 import { LinkedinLeadsPage } from '../../pages/leadsPages/LinkedinLeadsPage';
 import { GenerateLeadsPage } from '../../pages/leadsPages/GenerateLeadsPage';
 import { LinkedInSearchBarPage } from '../../pages/leadsPages/LinkedInSearchBarPage';
+import testData from '../../testData/testData.json'
+
 
 test.describe.configure({mode:'serial'});
 
@@ -29,7 +31,7 @@ test.describe('Linkedin Leads Test',()=>{
         await linkedinleads.addLeadsButton();
         await generateLeads.linkedinPostReactors().click();
         await generateLeads.continueButton().click();
-        await linkedinsearchbar.selectSenderName('Shakil Bhuiyan')
+        await linkedinsearchbar.selectSenderName(testData.linkedinLeads.selectSenderName)
         await linkedinsearchbar.searchUrlInput('https://www.linkedin.com/posts/universal-software_were-hiring-universal-software-is-looking-activity-7400149143756808192-jPI2?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEy3CcIBdOxcMO3UPmoZ-lvSiLjZgjOsA0A');
         await page.waitForTimeout(2000);
         await linkedinsearchbar.startImportButton().click();
@@ -53,7 +55,7 @@ test.describe('Linkedin Leads Test',()=>{
         await generateLeads.linkedinPostReactors().click();
         await generateLeads.continueButton().click();
         await linkedinsearchbar.listNameInputField('Post reactor lead 3');
-        await linkedinsearchbar.selectSenderName('Shakil Bhuiyan')
+        await linkedinsearchbar.selectSenderName(testData.linkedinLeads.selectSenderName)
         await linkedinsearchbar.searchUrlInput('https://www.linkedin.com/universal-software_were-hiring-universal-software-is-looking-activity-7400149143756808192-jPI2?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEy3CcIBdOxcMO3UPmoZ-lvSiLjZgjOsA0A');
         await page.waitForTimeout(2000);
         await linkedinsearchbar.startImportButton().click();
@@ -65,8 +67,8 @@ test.describe('Linkedin Leads Test',()=>{
         await generateLeads.linkedinPostReactors().click();
         await generateLeads.continueButton().click();
         await linkedinsearchbar.listNameInputField('Post reactor lead 3');
-        await linkedinsearchbar.selectSenderName('Shakil Bhuiyan')
-        await linkedinsearchbar.searchUrlInput('sfdsfdhtgdffgdsfg');
+        await linkedinsearchbar.selectSenderName(testData.linkedinLeads.selectSenderName)
+        await linkedinsearchbar.searchUrlInput(testData.linkedinLeads.NotUrl);
         await page.waitForTimeout(2000);
         await linkedinsearchbar.startImportButton().click();
         await page.waitForTimeout(2000);

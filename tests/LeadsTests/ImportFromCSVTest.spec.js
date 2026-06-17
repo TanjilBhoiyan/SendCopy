@@ -4,7 +4,10 @@ import { LinkedinLeadsPage } from '../../pages/leadsPages/LinkedinLeadsPage';
 import { GenerateLeadsPage } from '../../pages/leadsPages/GenerateLeadsPage';
 import { LinkedInSearchBarPage } from '../../pages/leadsPages/LinkedInSearchBarPage';
 import { ImprtFromCSVPage } from '../../pages/leadsPages/ImportFromCSVPage';
-import testData from '../../testData/testData.json';
+import testData from '../../testData/testData.json'
+
+
+
 test.describe.configure({mode:'serial'});
 
 test.describe('Linkedin Leads Test',()=>{
@@ -69,14 +72,14 @@ test.describe('Linkedin Leads Test',()=>{
         await generateLeads.continueButton().click();
         await imprtfromcsvpage.uploadSpreadSheet().setInputFiles('UploadFiles\\seedlink leads.csv');
         //await imprtfromcsvpage.firstDropdownItem('Profile URL');
-        await imprtfromcsvpage.secondDropdownItem(testData.importFromCSV.firstName);
-        await imprtfromcsvpage.thirdDropdownItem(testData.importFromCSV.lastName);
-        await imprtfromcsvpage.fourthDropdownItem(testData.importFromCSV.location);
-        await imprtfromcsvpage.fifthDropdownItem(testData.importFromCSV.headline);
-        await imprtfromcsvpage.sixthDropdownItem(testData.importFromCSV.company);
-        await imprtfromcsvpage.seventhDropdownItem(testData.importFromCSV.about);
-        await imprtfromcsvpage.eighthDropdownItem(testData.importFromCSV.emailAddress);
-        await imprtfromcsvpage.createEmptyList(testData.importFromCSV.peopleImportedLeads);
+        await imprtfromcsvpage.secondDropdownItem(testData.linkedinLeads.firstName);
+        await imprtfromcsvpage.thirdDropdownItem(testData.linkedinLeads.lastName);
+        await imprtfromcsvpage.fourthDropdownItem(testData.linkedinLeads.location);
+        await imprtfromcsvpage.fifthDropdownItem(testData.linkedinLeads.headline);
+        await imprtfromcsvpage.sixthDropdownItem(testData.linkedinLeads.company);
+        await imprtfromcsvpage.seventhDropdownItem(testData.linkedinLeads.about);
+        await imprtfromcsvpage.eighthDropdownItem(testData.linkedinLeads.emailAddress);
+        await imprtfromcsvpage.createEmptyList(testData.linkedinLeads.peopleImportedLeads);
         await imprtfromcsvpage.importLeadsButton().click();
         await expect(page.getByText('This field is required')).toBeVisible();
         await expect(page.getByText('Please map all required fields: LinkedIn Profile Url')).toBeVisible();
@@ -89,15 +92,15 @@ test.describe('Linkedin Leads Test',()=>{
         await generateLeads.importFromCSV().click();
         await generateLeads.continueButton().click();
         await imprtfromcsvpage.uploadSpreadSheet().setInputFiles('UploadFiles\\seedlink leads.csv');
-        await imprtfromcsvpage.firstDropdownItem(testData.importFromCSV.profileUrl);
-        //await imprtfromcsvpage.secondDropdownItem(testData.importFromCSV.firstName);
-        await imprtfromcsvpage.thirdDropdownItem(testData.importFromCSV.lastName);
-        await imprtfromcsvpage.fourthDropdownItem(testData.importFromCSV.location);
-        await imprtfromcsvpage.fifthDropdownItem(testData.importFromCSV.headline);
-        await imprtfromcsvpage.sixthDropdownItem(testData.importFromCSV.company);
-        await imprtfromcsvpage.seventhDropdownItem(testData.importFromCSV.about);
-        await imprtfromcsvpage.eighthDropdownItem(testData.importFromCSV.emailAddress);
-        await imprtfromcsvpage.createEmptyList(testData.importFromCSV.peopleImportedLeads);
+        await imprtfromcsvpage.firstDropdownItem(testData.linkedinLeads.profileUrl);
+        //await imprtfromcsvpage.secondDropdownItem(testData.linkedinLeads.firstName);
+        await imprtfromcsvpage.thirdDropdownItem(testData.linkedinLeads.lastName);
+        await imprtfromcsvpage.fourthDropdownItem(testData.linkedinLeads.location);
+        await imprtfromcsvpage.fifthDropdownItem(testData.linkedinLeads.headline);
+        await imprtfromcsvpage.sixthDropdownItem(testData.linkedinLeads.company);
+        await imprtfromcsvpage.seventhDropdownItem(testData.linkedinLeads.about);
+        await imprtfromcsvpage.eighthDropdownItem(testData.linkedinLeads.emailAddress);
+        await imprtfromcsvpage.createEmptyList(testData.linkedinLeads.peopleImportedLeads);
         await imprtfromcsvpage.importLeadsButton().click();
         await expect(page.getByText('This field is required')).toBeVisible();
         await expect(page.getByText('Please map all required fields: First Name')).toBeVisible();
@@ -108,15 +111,15 @@ test.describe('Linkedin Leads Test',()=>{
         await generateLeads.importFromCSV().click();
         await generateLeads.continueButton().click();
         await imprtfromcsvpage.uploadSpreadSheet().setInputFiles('UploadFiles\\seedlink leads.csv');
-        await imprtfromcsvpage.firstDropdownItem(testData.importFromCSV.profileUrl);
-        await imprtfromcsvpage.secondDropdownItem(testData.importFromCSV.firstName);
+        await imprtfromcsvpage.firstDropdownItem(testData.linkedinLeads.profileUrl);
+        await imprtfromcsvpage.secondDropdownItem(testData.linkedinLeads.firstName);
         //await imprtfromcsvpage.thirdDropdownItem('Last Name');
-        await imprtfromcsvpage.fourthDropdownItem(testData.importFromCSV.location);
-        await imprtfromcsvpage.fifthDropdownItem(testData.importFromCSV.headline);
-        await imprtfromcsvpage.sixthDropdownItem(testData.importFromCSV.company);
-        await imprtfromcsvpage.seventhDropdownItem(testData.importFromCSV.about);
-        await imprtfromcsvpage.eighthDropdownItem(testData.importFromCSV.emailAddress);
-        await imprtfromcsvpage.createEmptyList(testData.importFromCSV.peopleImportedLeads);
+        await imprtfromcsvpage.fourthDropdownItem(testData.linkedinLeads.location);
+        await imprtfromcsvpage.fifthDropdownItem(testData.linkedinLeads.headline);
+        await imprtfromcsvpage.sixthDropdownItem(testData.linkedinLeads.company);
+        await imprtfromcsvpage.seventhDropdownItem(testData.linkedinLeads.about);
+        await imprtfromcsvpage.eighthDropdownItem(testData.linkedinLeads.emailAddress);
+        await imprtfromcsvpage.createEmptyList(testData.linkedinLeads.peopleImportedLeads);
         await imprtfromcsvpage.importLeadsButton().click();
         await expect(page.getByText('This field is required')).toBeVisible();
         await expect(page.getByText('Please map all required fields: Last Name')).toBeVisible();
@@ -187,14 +190,14 @@ test.describe('Linkedin Leads Test',()=>{
         await generateLeads.continueButton().click();
         await imprtfromcsvpage.companyButton().click();
         await imprtfromcsvpage.uploadSpreadSheet().setInputFiles('UploadFiles\\company leads.csv');
-        await imprtfromcsvpage.firstDropdownItem(testData.importFromCSV.companyName);
-        await imprtfromcsvpage.secondDropdownItem(testData.importFromCSV.companyURL);
-        await imprtfromcsvpage.thirdDropdownItem(testData.importFromCSV.profileUrl);
-        await imprtfromcsvpage.fourthDropdownItem(testData.importFromCSV.location);
-        await imprtfromcsvpage.fifthDropdownItem(testData.importFromCSV.headline);
-        await imprtfromcsvpage.sixthDropdownItem(testData.importFromCSV.about);
-        await imprtfromcsvpage.seventhDropdownItem(testData.importFromCSV.emailAddress);
-        await imprtfromcsvpage.createEmptyList(testData.importFromCSV.companyImportedLeads);
+        await imprtfromcsvpage.firstDropdownItem(testData.linkedinLeads.companyName);
+        await imprtfromcsvpage.secondDropdownItem(testData.linkedinLeads.companyURL);
+        await imprtfromcsvpage.thirdDropdownItem(testData.linkedinLeads.profileUrl);
+        await imprtfromcsvpage.fourthDropdownItem(testData.linkedinLeads.location);
+        await imprtfromcsvpage.fifthDropdownItem(testData.linkedinLeads.headline);
+        await imprtfromcsvpage.sixthDropdownItem(testData.linkedinLeads.about);
+        await imprtfromcsvpage.seventhDropdownItem(testData.linkedinLeads.emailAddress);
+        await imprtfromcsvpage.createEmptyList(testData.linkedinLeads.companyImportedLeads);
         await imprtfromcsvpage.importLeadsButton().click();
         await expect(page.getByText('Success')).toBeVisible();
         // successfully import howar por leads importing validation kora hoy nai(Leads page e)
