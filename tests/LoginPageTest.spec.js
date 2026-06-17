@@ -1,5 +1,6 @@
 import { test , expect } from '@playwright/test'
 import { LoginPage } from '../pages/LoginPage'
+import testData from '../testData/testData.json'
 
 test.describe.configure({mode:'serial'});
 
@@ -13,22 +14,22 @@ test.describe('Login Tests',()=>{
     })
 
     test('Login test Using Valid email and valid password' ,async ({page})=>{
-        await login.login('shakilbhoiyan47@gmail.com','Shakil123@#?');
+        await login.login(testData.loginTestData.validEmail,testData.loginTestData.validPassword);
         // Assertion: Successfully logged in
         await expect(page).toHaveURL('https://app.sendcopy.ai/dashboard');
     })
     test('Login test using Valid email and Invalid password' , async ({page})=> {
-        await login.login('shakilbhoiyan47@gmail.com','thisiswrongPassword');
+        await login.login(testData.loginTestData.validEmail , testData.loginTestData.invalidPassword);
         // Assertion: Error message visible
         await expect(page.getByText('invalid credentials')).toBeVisible();
     })
     test('Login test using Invalid email and Invalid password' , async ({page})=> {
-        await login.login('thisiswrongemail@gmail.com','thisiswrongPassword')
+        await login.login(testData.loginTestData.invalidEmail,testData.loginTestData.invalidPassword)
         // Assertion: Error message visible
         await expect(page.getByText('invalid credentials')).toBeVisible();
     })
     test('Login test using Invalid email and Valid password' , async ({page})=> {
-        await login.login('thisiswrongemail@gmail.com','Shakil123@#?')
+        await login.login(testData.loginTestData.invalidEmail,testData.loginTestData.validPassword)
         // Assertion: Error message visible
         await expect(page.getByText('invalid credentials')).toBeVisible();
     })
@@ -90,7 +91,7 @@ test.describe('Signup Tests',()=>{
     test('Try to signup using less than 8 character password',async({page})=>{
         await signup.firstName('Tanjil');
         await signup.lastName('Bhoiyan');
-        await signup.signUpEmail('abcde@gmail.com');
+        await signup.signUpEmail(testData.loginTestData.signUptestEmail);
         await signup.signUpPassword('tanjil');
         // Assertion
         await expect(page.getByText('Password must be at least 8 characters')).toBeVisible();
@@ -98,7 +99,7 @@ test.describe('Signup Tests',()=>{
     test('If user does not use uppercase letter in password',async({page})=>{
         await signup.firstName('Tanjil');
         await signup.lastName('Bhoiyan');
-        await signup.signUpEmail('abcde@gmail.com');
+        await signup.signUpEmail(testData.loginTestData.signUptestEmail);
         await signup.signUpPassword('tanjilxyz');
         // Assertion
         await expect(page.getByText('Password must contain at least one uppercase letter')).toBeVisible();
@@ -107,7 +108,7 @@ test.describe('Signup Tests',()=>{
         //await page.waitForTimeout(1000);
         await signup.firstName('Tanjil');
         await signup.lastName('Bhoiyan');
-        await signup.signUpEmail('abcde@gmail.com');
+        await signup.signUpEmail(testData.loginTestData.signUptestEmail);
         await signup.signUpPassword('Tanjilxyz');
         await signup.confirmPassword('Tanjil123@#?');
         await signup.createAccount();
@@ -118,7 +119,7 @@ test.describe('Signup Tests',()=>{
         //await page.waitForTimeout(1000);
         await signup.firstName('Tanjil');
         await signup.lastName('Bhoiyan');
-        await signup.signUpEmail('abcde@gmail.com');
+        await signup.signUpEmail(testData.loginTestData.signUptestEmail);
         await signup.signUpPassword('Tanjil12');
         await signup.confirmPassword('Tanjil123@#?');
         await signup.createAccount();
@@ -128,7 +129,7 @@ test.describe('Signup Tests',()=>{
     test('Verify re-enter password does not match with password',async({page})=>{
         await signup.firstName('Tanjil');
         await signup.lastName('Bhoiyan');
-        await signup.signUpEmail('abcde@gmail.com');
+        await signup.signUpEmail(testData.loginTestData.signUptestEmail);
         await signup.signUpPassword('Tanjil123@#?');
         await signup.confirmPassword('Shakil123@#?');
         await signup.createAccount();

@@ -40,5 +40,16 @@
     "newListNameInput":"List name Renamed",
     "NotUrl":"abcdefgh",
     "listInputField":"automation lead1"
+  },
+  "networkTestData":{
+    "searchByKeyword":"Panna",
+    "myNetworkList":"My Network List"
+  },
+  "loginTestData":{
+    "validEmail":"shakilbhoiyan47@gmail.com",
+    "validPassword":"Shakil123@#?",
+    "invalidEmail":"thisIsInvalidEmail@gmail.com",
+    "invalidPassword":"thisisinvalidPassword",
+    "signUptestEmail":"abcde@gmail.com"
   }
 }

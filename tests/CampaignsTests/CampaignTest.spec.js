@@ -11,7 +11,7 @@ test.describe('Linkedin Leads Test',()=>{
     test.beforeEach(async ({page})=>{
         const login = new LoginPage(page);
         await login.gotoLoginPage();
-        await login.login('regressiontest5@gmail.com','Shakil123@#?');
+        await login.login(testData.loginTestData.validEmail,testData.loginTestData.validPassword);
         campaignButton = new CampaignPage(page);
         await campaignButton.campaignButton();
 

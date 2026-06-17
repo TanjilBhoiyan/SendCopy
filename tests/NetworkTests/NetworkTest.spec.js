@@ -2,6 +2,7 @@ import { test , expect } from '@playwright/test';
 import { LoginPage } from '../../pages/LoginPage';
 import { NetworkPage } from '../../pages/NetworkPages/NetworkPage';
 import { LinkedinLeadsPage } from '../../pages/leadsPages/LinkedinLeadsPage';
+import testData from '../../testData/testData.json'
 
 
 test.describe.configure({mode:'serial'});
@@ -14,7 +15,7 @@ test.describe('Linkedin Leads Test',()=>{
     test.beforeEach(async ({page})=>{
         const login = new LoginPage(page);
         await login.gotoLoginPage();
-        await login.login('shakilbhoiyan47@gmail.com','Shakil123@#?');
+        await login.login(testData.loginTestData.validEmail , testData.loginTestData.validPassword);
         network = new NetworkPage(page);
         await network.networkButton();
     })
@@ -43,7 +44,7 @@ test.describe('Linkedin Leads Test',()=>{
         await network.selectModeSwitch();
         await network.leadNameCheckBox().click();
         await network.addToListButton().click();
-        await network.listNameInputBox('My Network List');
+        await network.listNameInputBox(testData.networkTestData.myNetworkList);
         await network.listNameConfirmButton().click();
         await expect(page.getByText('Lead List Created Successfully from My Network')).toBeVisible();
 
@@ -51,7 +52,7 @@ test.describe('Linkedin Leads Test',()=>{
         await linkedinLeads.linkedinLeadsLink();
         const newLeadsName= await linkedinLeads.leads().innerText();
         console.log(newLeadsName);
-        expect(newLeadsName).toContain('My Network List');
+        expect(newLeadsName).toContain(testData.networkTestData.myNetworkList);
     })
 
 
@@ -65,8 +66,8 @@ test.describe('Linkedin Leads Test',()=>{
         
     // })
     test('check the lead name after inter a lead name in search by keywords field',async ({page})=>{
-        const leadName = await network.searchByKeyword('Panna');
-        expect(leadName).toContain('Panna');
+        const leadName = await network.searchByKeyword(testData.networkTestData.searchByKeyword);
+        expect(leadName).toContain(testData.networkTestData.searchByKeyword);
     })
 
 })
