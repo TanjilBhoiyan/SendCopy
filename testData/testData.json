@@ -46,7 +46,7 @@
     "myNetworkList":"My Network List"
   },
   "loginTestData":{
-    "validEmail":"shakilbhoiyan47@gmail.com",
+    "validEmail":"regressiontest5@gmail.com",
     "validPassword":"Shakil123@#?",
     "invalidEmail":"thisIsInvalidEmail@gmail.com",
     "invalidPassword":"thisisinvalidPassword",

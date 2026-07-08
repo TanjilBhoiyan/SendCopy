@@ -24,7 +24,7 @@ test.describe('Linkedin Leads Test',()=>{
         await campaignButton.senderLimitConfigure();
         await campaignButton.senderLimitSaveButton();
         await campaignButton.senderScedule();
-        await campaignButton.updateScheduleButton();
+        //await campaignButton.updateScheduleButton();
         await campaignButton.senderSceduleCrossButton();
         await campaignButton.continueButton();
         await campaignButton.selectLeadLeads('seedlink leads');
