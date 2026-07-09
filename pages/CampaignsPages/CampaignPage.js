@@ -21,6 +21,12 @@ export class CampaignPage {
         this.ifOpenProfileLocator = '//span[normalize-space()="If Open Profile"]';
         this.launchCampaignLocator = '//button[normalize-space()="Launch Campaign"]';
         //this.mondaySliderLeftLocator = '(//div[@role="slider"])[1]';
+        this.maxFollowsSlider = '(//span[@role="slider"])[1]'
+        this.maxMessagesSlider = '(//span[@role="slider"])[2]'
+        this.maxFollowsSlider = '(//span[@role="slider"])[3]'
+        this.maxInMailSlider = '(//span[@role="slider"])[4]'
+        this.maxConnectionRequestSlider = '(//span[@role="slider"])[5]'
+        this.maxProfileViewSlider = '(//span[@role="slider"])[6]'
     }
 
     async launchCampaign() {
@@ -48,16 +54,30 @@ export class CampaignPage {
         await this.page.locator(this.senderScheduleButtonLocator).click();
 
         for (let i = 1; i <= 7; i++) {
-            
+
             let leftIndex = (i * 2) - 1;
             let rightIndex = i * 2;
             const leftSlider = this.page.locator(`(//div[@role='slider'])[${leftIndex}]`);
             const rightSlider = this.page.locator(`(//div[@role='slider'])[${rightIndex}]`);
-            await leftSlider.scrollIntoViewIfNeeded(); 
+            await leftSlider.scrollIntoViewIfNeeded();
             await rightSlider.scrollIntoViewIfNeeded()
             await this.moveSlider(leftSlider, rightSlider);
         }
         await this.page.locator(this.updateScheduleButtonLocator).click();
+    }
+    async senderLimitSlider(SliderLocators) {
+        const page = sliderLocator.page();
+        const box = await sliderLocator.boundingBox();
+
+        if (!box) return;
+        const startX = box.x + box.width / 2;
+        const startY = box.y + box.height / 2;
+
+        await page.mouse.move(startX, startY);
+        await page.mouse.down();
+        await page.mouse.move(startX + 1000, startY, { steps: 10 });
+
+        await page.mouse.up();
     }
     async moveSlider(leftSlider, rightSlider) {
         const actions = [
@@ -88,8 +108,8 @@ export class CampaignPage {
     async senderLimitConfigure() {
         await this.page.locator(this.senderLimitConfigureButtonLocator).click();
     }
-    async selectSender() {
-        await this.page.locator(this.senderSelectionMarkLocator).click();
+    selectSender() {
+        return this.page.locator(this.senderSelectionMarkLocator);
     }
     async campaignName(campaign_name) {
         await this.page.locator(this.EnterCampaignNameLocator).fill(campaign_name);

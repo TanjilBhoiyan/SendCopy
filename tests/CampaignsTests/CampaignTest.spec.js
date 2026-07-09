@@ -17,10 +17,10 @@ test.describe('Linkedin Leads Test',()=>{
 
         // create object for generate leads page
     })
-    test.only('Launch a successful campaign',async ({page})=>{
+    test('Launch a successful campaign',async ({page})=>{
         await campaignButton.createCampaign();
         await campaignButton.campaignName("Automation_campaign_test");
-        await campaignButton.selectSender();
+        await campaignButton.selectSender().click();
         await campaignButton.senderLimitConfigure();
         await campaignButton.senderLimitSaveButton();
         await campaignButton.senderScedule();
@@ -35,6 +35,45 @@ test.describe('Linkedin Leads Test',()=>{
         await campaignButton.launchCampaign();
         await expect(page.getByText('Campaign started successfully')).toBeVisible();
     })
+    test('If not select sender check the continue button',async ({page})=>{
+        await campaignButton.createCampaign();
+        await campaignButton.campaignName("Automation_campaign_test");
+        const isChecked = await campaignButton.selectSender().isChecked();
+        if(!isChecked){
+            await expect(page.getByText('Continue')).toBeDisabled();
+        }
+    })
+    test.only('Check sender limit Value must be at most 40 ',async ({page})=>{
+        await campaignButton.createCampaign();
+        await campaignButton.campaignName("Automation_campaign_test");
+        await campaignButton.selectSender().click();
+        await campaignButton.senderLimitConfigure();
+    })
+    test.only('Check max message/day Value must be at most 40',async ({page})=>{
+        await campaignButton.createCampaign();
+        await campaignButton.campaignName("Automation_campaign_test");
+        await campaignButton.selectSender().click();
+        await campaignButton.senderLimitConfigure();
+    })
+    test.only('Check max connection Request Value must be at most 25',async ({page})=>{
+        await campaignButton.createCampaign();
+        await campaignButton.campaignName("Automation_campaign_test");
+        await campaignButton.selectSender().click();
+        await campaignButton.senderLimitConfigure();
+    })
+    test.only('Check max profile view Value must be at most 40',async ({page})=>{
+        await campaignButton.createCampaign();
+        await campaignButton.campaignName("Automation_campaign_test");
+        await campaignButton.selectSender().click();
+        await campaignButton.senderLimitConfigure();
+    })
+    test.only('Check max post likes Value must be at most 40',async ({page})=>{
+        await campaignButton.createCampaign();
+        await campaignButton.campaignName("Automation_campaign_test");
+        await campaignButton.selectSender().click();
+        await campaignButton.senderLimitConfigure();
+    })
+
 })
 
 // npx playwright test tests/CampaignsTests/CampaignTest.spec.js --project chromium --debug
