@@ -23,10 +23,10 @@ export class CampaignPage {
         //this.mondaySliderLeftLocator = '(//div[@role="slider"])[1]';
         this.maxFollowsSlider = '(//span[@role="slider"])[1]'
         this.maxMessagesSlider = '(//span[@role="slider"])[2]'
-        this.maxFollowsSlider = '(//span[@role="slider"])[3]'
-        this.maxInMailSlider = '(//span[@role="slider"])[4]'
-        this.maxConnectionRequestSlider = '(//span[@role="slider"])[5]'
-        this.maxProfileViewSlider = '(//span[@role="slider"])[6]'
+        this.maxInMailDaySlider = '(//span[@role="slider"])[3]'
+        this.maxConnectionRequestDaySlider = '(//span[@role="slider"])[4]'
+        this.maxProfileViewDaySlider = '(//span[@role="slider"])[5]'
+        this.maxPostLikeDaySlider = '(//span[@role="slider"])[6]'
     }
 
     async launchCampaign() {
@@ -50,6 +50,23 @@ export class CampaignPage {
     // async updateScheduleButton() {
     //     await this.page.locator(this.updateScheduleButtonLocator).click();
     // }
+    
+async senderLimitSlider(sliderLocators) {
+        const page = sliderLocator.page();
+        const box = await sliderLocator.boundingBox();
+
+        if (!box) {
+            throw new Error("Slider box not found!"); // Error throw kora bhalo jate fail korle bujhte paren
+        }
+        
+        const startX = box.x + box.width / 2;
+        const startY = box.y + box.height / 2;
+
+        await page.mouse.move(startX, startY);
+        await page.mouse.down();
+        await page.mouse.move(startX + 1000, startY, { steps: 10 }); 
+        await page.mouse.up();
+    }
     async senderScedule() {
         await this.page.locator(this.senderScheduleButtonLocator).click();
 
@@ -64,20 +81,6 @@ export class CampaignPage {
             await this.moveSlider(leftSlider, rightSlider);
         }
         await this.page.locator(this.updateScheduleButtonLocator).click();
-    }
-    async senderLimitSlider(SliderLocators) {
-        const page = sliderLocator.page();
-        const box = await sliderLocator.boundingBox();
-
-        if (!box) return;
-        const startX = box.x + box.width / 2;
-        const startY = box.y + box.height / 2;
-
-        await page.mouse.move(startX, startY);
-        await page.mouse.down();
-        await page.mouse.move(startX + 1000, startY, { steps: 10 });
-
-        await page.mouse.up();
     }
     async moveSlider(leftSlider, rightSlider) {
         const actions = [
@@ -105,7 +108,8 @@ export class CampaignPage {
     async senderLimitSaveButton() {
         await this.page.locator(this.senderLimitSaveButtonLocator).click();
     }
-    async senderLimitConfigure() {
+
+async senderLimitConfigure() {
         await this.page.locator(this.senderLimitConfigureButtonLocator).click();
     }
     selectSender() {
@@ -120,6 +124,44 @@ export class CampaignPage {
     }
     async campaignButton() {
         await this.page.locator(this.campaignButtonLocator).click();
+    }
+        async senderLimitSlider(SliderLocators) {
+        const page = sliderLocator.page();
+        const box = await sliderLocator.boundingBox();
+
+        if (!box) return;
+        const startX = box.x + box.width / 2;
+        const startY = box.y + box.height / 2;
+
+        await page.mouse.move(startX, startY);
+        await page.mouse.down();
+        await page.mouse.move(startX + 1000, startY, { steps: 10 });
+
+        await page.mouse.up();
+    }
+    async adjustSenderLimit(sliderEvent){
+        switch (sliderEvent) {
+            case 'followsDay':
+                await this.senderLimitSlider(this.maxFollowsSlider);
+                break;
+            case 'messageDay':
+                await this.senderLimitSlider(this.maxMessagesSlider);
+                break;
+            case 'InMailDay':
+                await this.senderLimitSlider(this.maxInMailDaySlider);
+                break;
+            case 'connectionRequestDay':
+                await this.senderLimitSlider(this.maxConnectionRequestDaySlider);
+                break;
+            case 'profileViewDay':
+                await this.senderLimitSlider(this.maxProfileViewDaySlider);
+                break;
+            case 'postLikeDay':
+                await this.senderLimitSlider(this.maxPostLikeDaySlider);
+                break;
+            default:
+                console.log(`Warning: Unrecognized sliderEvent '${sliderEvent}'`);
+        }
     }
 
 }
