@@ -202,6 +202,4 @@ test.describe('Linkedin Leads Test',()=>{
         await expect(page.getByText('Success')).toBeVisible();
         // successfully import howar por leads importing validation kora hoy nai(Leads page e)
     })
-
-
 })

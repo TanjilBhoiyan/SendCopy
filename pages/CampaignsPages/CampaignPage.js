@@ -109,12 +109,13 @@ async senderLimitSlider(sliderLocators) {
         await this.page.locator(this.senderLimitSaveButtonLocator).click();
     }
 
-async senderLimitConfigure() {
+    async senderLimitConfigure() {
         await this.page.locator(this.senderLimitConfigureButtonLocator).click();
     }
-    selectSender() {
-        return this.page.locator(this.senderSelectionMarkLocator);
-    }
+    async selectSender() {
+    await this.page.waitForTimeout(2000);
+    return this.page.locator(this.senderSelectionMarkLocator);
+}
     async campaignName(campaign_name) {
         await this.page.locator(this.EnterCampaignNameLocator).fill(campaign_name);
         await this.page.locator(this.createButtonLocator).click();
