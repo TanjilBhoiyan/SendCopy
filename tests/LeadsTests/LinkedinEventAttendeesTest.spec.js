@@ -26,7 +26,7 @@ test.describe('Linkedin Leads Test',()=>{
         generateLeads = new GenerateLeadsPage(page);
         linkedineventattendees = new LinkedinEventAttendeesPage(page);
     })
-    test('Verify event attendees without enter list name input' ,async ({page})=>{
+    test.only('Verify event attendees without enter list name input' ,async ({page})=>{
         await linkedinleads.addLeadsButton();
         await generateLeads.linkedinEventAttendees().click();
         await generateLeads.continueButton().click();
@@ -36,7 +36,7 @@ test.describe('Linkedin Leads Test',()=>{
         await linkedineventattendees.startImportButton().click();
         await expect(page.getByText('List name is required')).toBeVisible();
     })
-    test.only('Verify event attendees without select sender name' ,async ({page})=>{
+    test('Verify event attendees without select sender name' ,async ({page})=>{
         await linkedinleads.addLeadsButton();
         await generateLeads.linkedinEventAttendees().click();
         await generateLeads.continueButton().click();
@@ -67,4 +67,4 @@ test.describe('Linkedin Leads Test',()=>{
         await expect(page.getByText('Please enter a valid URL')).toBeVisible();
     })
 })
-// npx playwright test tests/LinkedinLeadsPageTest.spec.js --project chromium --headed
+// npx playwright test tests/LinkedinEventAttendeesTest.spec.js --project chromium --headed

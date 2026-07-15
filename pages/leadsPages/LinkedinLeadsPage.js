@@ -1,4 +1,5 @@
 
+import { expect } from "@playwright/test";
 import { ImprtFromCSVPage } from "../leadsPages/ImportFromCSVPage";
 
 export class LinkedinLeadsPage{
@@ -13,7 +14,7 @@ export class LinkedinLeadsPage{
         this.alllistnameLocator = '[data-slot="table-body"]>[data-slot="table-row"]';
         this.leadsnumberLocator= 'td:nth-child(3)>div>span.text-sm.font-medium';
         this.addleadsButtonLocator='//button[normalize-space()="Add leads"]';
-        this.threeDotButtonLocator='(//button[@type="button"])[3]';
+        this.threeDotButtonLocator='(//button[@type="button"])[4]';
         this.leadListDeleteButtonLocator='//span[normalize-space()="Delete"]';
         this.deleteListConfirmButtonLocator='//button[normalize-space()="Confirm"]';
         this.leadListRenameButtonLocator='//span[normalize-space()="Rename"]';
@@ -89,6 +90,7 @@ export class LinkedinLeadsPage{
     }
     async linkedinLeadsLink(){
         await this.page.locator(this.leadsPageLocator).click();
+        await this.page.waitForTimeout(1000);
     }
     async searchList(search_item){
         await this.page.locator(this.searchListLocator).fill(search_item);

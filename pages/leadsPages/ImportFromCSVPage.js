@@ -18,18 +18,18 @@ export class ImprtFromCSVPage {
         this.listNameInputLocator = '//input[@placeholder="Enter list name"]';
         this.confirmButtonLocator = '//div[contains(text(),"Confirm")]';
         this.companyLocator = '(//button[normalize-space()="Company"])[1]';
-        this.crossButtonLocator='.lucide.lucide-x.w-4.h-4';
-        this.addCustomVariableLocator='//button[normalize-space()="Add custom variable"]';
-        this.customVariableRowLocator='div.flex.items-center.gap-3.p-4.border.border-gray-200.rounded-lg';
-        this.customVariableDeleteButtonLocator='.lucide.lucide-trash2.lucide-trash-2.w-4.h-4';
+        this.crossButtonLocator = '.lucide.lucide-x.w-4.h-4';
+        this.addCustomVariableLocator = '//button[normalize-space()="Add custom variable"]';
+        this.customVariableRowLocator = 'div.flex.items-center.gap-3.p-4.border.border-gray-200.rounded-lg';
+        this.customVariableDeleteButtonLocator = '.lucide.lucide-trash2.lucide-trash-2.w-4.h-4';
     }
-    async customVariableDeleteButton(){
+    async customVariableDeleteButton() {
         await this.page.locator(this.customVariableDeleteButtonLocator).click();
     }
-    customVariableRow(){
+    customVariableRow() {
         return this.page.locator(this.customVariableRowLocator);
     }
-    addCustomVariable(){
+    addCustomVariable() {
         return this.page.locator(this.addCustomVariableLocator);
     }
     companyButton() {
@@ -46,12 +46,13 @@ export class ImprtFromCSVPage {
 
     async selectOptionByText(selector, searchText) {
         await this.page.locator(selector).click();
-        await this.page.waitForTimeout(2000);
-        const options = await this.page.$$(this.OptionsLocator);
+        const optionsLocator = this.page.locator(this.OptionsLocator);
+        await optionsLocator.first().waitFor({ state: 'visible' });
+        const options = await optionsLocator.all();
         let isFound = false;
         for (let option of options) {
             const text = await option.textContent();
-            if (text.includes(searchText)) {
+            if (text && text.includes(searchText)) {
                 await option.click();
                 isFound = true;
                 break;
@@ -60,9 +61,8 @@ export class ImprtFromCSVPage {
         if (!isFound) {
             for (let option of options) {
                 const text = await option.textContent();
-                if (text.includes("None")) {
+                if (text && text.includes("None")) {
                     await option.click();
-                    //isFound = true;
                     break;
                 }
             }
@@ -95,7 +95,7 @@ export class ImprtFromCSVPage {
     uploadSpreadSheet() {
         return this.page.locator(this.uploadSpreadSheetLocator);
     }
-    crossButton(){
+    crossButton() {
         return this.page.locator(this.crossButtonLocator);
     }
 }

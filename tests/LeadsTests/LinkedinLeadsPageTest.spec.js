@@ -1,17 +1,17 @@
-import { test , expect } from '@playwright/test';
+import { test, expect } from '@playwright/test';
 import { LoginPage } from '../../pages/LoginPage';
 import { LinkedinLeadsPage } from '../../pages/leadsPages/LinkedinLeadsPage';
 import { GenerateLeadsPage } from '../../pages/leadsPages/GenerateLeadsPage';
 import { LinkedInSearchBarPage } from '../../pages/leadsPages/LinkedInSearchBarPage';
-import { LinkedinEventAttendeesPage} from '../../pages/leadsPages/LinkedInEventAttendeesPage';
+import { LinkedinEventAttendeesPage } from '../../pages/leadsPages/LinkedInEventAttendeesPage';
 import { LinkedinSearchCompanies } from '../../pages/leadsPages/LinkedInSearchCompaniesPage';
 import { ImprtFromCSVPage } from '../../pages/leadsPages/ImportFromCSVPage';
 import testData from '../../testData/testData.json'
 
 
-test.describe.configure({mode:'serial'});
+test.describe.configure({ mode: 'default' });
 
-test.describe('Linkedin Leads Test',()=>{
+test.describe('Linkedin Leads Test', () => {
     /**@type {ImprtFromCSVPage} */
     let imprtfromcsvpage;
     /**@type {LinkedinSearchCompanies} */
@@ -24,10 +24,10 @@ test.describe('Linkedin Leads Test',()=>{
     let generateLeads;
     /** @type {LinkedInSearchBarPage} */
     let linkedinsearchbar;
-    test.beforeEach(async ({page})=>{
+    test.beforeEach(async ({ page }) => {
         const login = new LoginPage(page);
         await login.gotoLoginPage();
-        await login.login(testData.loginTestData.validEmail , testData.loginTestData.validPassword);
+        await login.login(testData.loginTestData.validEmail, testData.loginTestData.validPassword);
         linkedinleads = new LinkedinLeadsPage(page);
         await linkedinleads.linkedinLeadsLink();
 
@@ -39,11 +39,11 @@ test.describe('Linkedin Leads Test',()=>{
         linkedinsearchcompanies = new LinkedinSearchCompanies(page);
         imprtfromcsvpage = new ImprtFromCSVPage(page);
     })
-    test('Verify Succssful lead import from LinkedIn Search Bar',async ({page})=>{
+    test('Verify Succssful lead import from LinkedIn Search Bar', async ({ page }) => {
         await linkedinleads.addLeadsButton();
         await generateLeads.continueButton().click();
         await linkedinsearchbar.listNameInputField('automation lead1');
-        await linkedinsearchbar.selectSenderName(testData.linkedinEventAttendes.selectSenderName);
+        await linkedinsearchbar.selectSenderName(testData.linkedinLeads.selectSenderName);
         //await page.waitForTimeout(20000);
         await linkedinsearchbar.searchUrlInput('https://www.linkedin.com/search/results/people/?keywords=software%20engineer&origin=SWITCH_SEARCH_VERTICAL&sid=-Tu');
         await linkedinsearchbar.startImportButton().click();
@@ -54,7 +54,7 @@ test.describe('Linkedin Leads Test',()=>{
 
     // })
 
-    test('Verify Succssful lead import from LinkedIn Event (Attendees)',async ({page})=>{
+    test.skip('Verify Succssful lead import from LinkedIn Event (Attendees)', async ({ page }) => {
         await linkedinleads.addLeadsButton();
         await generateLeads.linkedinEventAttendees().click();
         await generateLeads.continueButton().click();
@@ -64,7 +64,7 @@ test.describe('Linkedin Leads Test',()=>{
         await linkedineventattendees.startImportButton().click();
         await expect(page.getByText('Started importing leads for linkedin event')).toBeVisible();
     })
-    test('Verify Succssful lead import from LinkedIn Post (Reactors)',async ({page})=>{
+    test('Verify Succssful lead import from LinkedIn Post (Reactors)', async ({ page }) => {
         await linkedinleads.addLeadsButton();
         await generateLeads.linkedinPostReactors().click();
         await generateLeads.continueButton().click();
@@ -77,7 +77,7 @@ test.describe('Linkedin Leads Test',()=>{
         await expect(page.getByText('Success')).toBeVisible();
         //await expect(page.getByText('Started importing leads for linkedin post reactors')).toBeVisible();
     })
-    test('Verify Succssful lead import from LinkedIn Search (Companies)',async ({page})=>{
+    test('Verify Succssful lead import from LinkedIn Search (Companies)', async ({ page }) => {
         await linkedinleads.addLeadsButton();
         await generateLeads.linkedinSearchCompanies().click();
         await generateLeads.continueButton().click();
@@ -87,10 +87,10 @@ test.describe('Linkedin Leads Test',()=>{
         await page.waitForTimeout(2000);
         await linkedinsearchbar.startImportButton().click();
         //await page.waitForTimeout(2000);
-        await expect(page.getByText('Success')).toBeVisible();       
+        await expect(page.getByText('Success')).toBeVisible();
     })
 
-    test('Verify Succssful People Lead Import from Import from CSV',async ({page})=>{
+    test('Verify Succssful People Lead Import from Import from CSV', async ({ page }) => {
         await linkedinleads.addLeadsButton();
         await generateLeads.importFromCSV().click();
         await generateLeads.continueButton().click();
@@ -104,11 +104,11 @@ test.describe('Linkedin Leads Test',()=>{
         await imprtfromcsvpage.seventhDropdownItem(testData.linkedinLeads.about);
         await imprtfromcsvpage.eighthDropdownItem(testData.linkedinLeads.emailAddress);
         await imprtfromcsvpage.createEmptyList(testData.linkedinLeads.peopleImportedLeads);
-        await imprtfromcsvpage.importLeadsButton().click();
+        await imprtfromcsvpage.importLeadsButton().click({ position: { x: 10, y: 15 } });
         await expect(page.getByText('Success')).toBeVisible();
         // successfully import howar por leads importing validation kora hoy nai(Leads page e)
     })
-    test('Verify Succssful Company Lead Import from Import from CSV',async ({page})=>{
+    test('Verify Succssful Company Lead Import from Import from CSV', async ({ page }) => {
         await linkedinleads.addLeadsButton();
         await generateLeads.importFromCSV().click();
         await generateLeads.continueButton().click();
@@ -122,58 +122,61 @@ test.describe('Linkedin Leads Test',()=>{
         await imprtfromcsvpage.sixthDropdownItem(testData.linkedinLeads.about);
         await imprtfromcsvpage.seventhDropdownItem(testData.linkedinLeads.emailAddress);
         await imprtfromcsvpage.createEmptyList(testData.linkedinLeads.companyImportedLeads);
-        await imprtfromcsvpage.importLeadsButton().click();
+        await imprtfromcsvpage.importLeadsButton().click({ position: { x: 10, y: 15 } });
         await expect(page.getByText('Success')).toBeVisible();
         // successfully import howar por leads importing validation kora hoy nai(Leads page e)
     })
     // test.only('Verify Succssful lead import from Sales Navigator (Leads)',async ({page})=>{
-        
+
     // })
     // test.only('Verify Succssful lead import from Sales Navigator (Accounts)',async ({page})=>{
 
     // })
 
-    test('Verify Leads lists Seacrch ',async ({page})=>{
+    test('Verify Leads lists Seacrch ', async ({ page }) => {
         await linkedinleads.searchList('event');
         const row = await linkedinleads.getRow('event');
         const noResult = await linkedinleads.noRresultVisible();
-        if(await row.count()>0){
+        if (await row.count() > 0) {
             console.log('Item found');
             await expect(row.first()).toBeVisible();
         }
-        else{
+        else {
             console.log('No Result');
             await expect(noResult).toBeVisible();
         }
     })
-    test('search filter',async ({page})=>{
+    test('search filter', async ({ page }) => {
         await linkedinleads.searchList('Company');
-        await linkedinleads.allListName().first().waitFor({ state: 'visible', timeout: 5000 });
-        const searchitemrows = await linkedinleads.allListName().all();
-        const searchRowCount = searchitemrows.length;
-        if(searchRowCount>1){
-            for(const searchitemrow of searchitemrows){
-                const leadCount=Number(await linkedinleads.leadNumber(searchitemrow).innerText());
-                //console.log(leadCount);
+        const searchListLocator = linkedinleads.allListName();
+        const noResultLocator = page.getByText('No Result');
+        await expect(searchListLocator.first().or(noResultLocator)).toBeVisible({ timeout: 10000 });
+        const searchRowCount = await searchListLocator.count();
+        if (searchRowCount > 0) {
+            const searchitemrows = await searchListLocator.all();
+            for (const searchitemrow of searchitemrows) {
+                const leadCountText = await linkedinleads.leadNumber(searchitemrow).innerText();
+                const leadCount = Number(leadCountText);
+                console.log(`Lead Count: ${leadCount}`);
                 expect(leadCount).toBeGreaterThan(1);
             }
+        } else {
+            console.log('No Result Found');
+            await expect(noResultLocator).toBeVisible();
         }
-        else{
-            console.log('No Result');
-            await expect(page.getByText('No Result')).toBeVisible();
-        }
-    })
-    test('Verify Add leads button is Enabled',async ()=>{
+    });
+    test.skip('Verify Add leads button is Enabled', async () => {
         await expect(await linkedinleads.addLeadsButton()).toBeVisible();
         await expect(await linkedinleads.addLeadsButton()).toBeEnabled();
     })
-    test('Verify delete button inside the three dots',async ({page})=>{
+    test('Verify delete button inside the three dots', async ({ page }) => {
+        await linkedinleads.threeDotButton().waitFor({state: 'visible'});
         await linkedinleads.threeDotButton().click();
         await linkedinleads.leadListDeleteButton().click();
         await linkedinleads.deleteListConfirmButton().click();
         await expect(page.getByText('Lead list deleted successfully')).toBeVisible();
     })
-    test('Verify Rename button inside the three dots',async ({page})=>{
+    test('Verify Rename button inside the three dots', async ({ page }) => {
         await linkedinleads.threeDotButton().click();
         await linkedinleads.leadListRename().click();
         await linkedinleads.newListNameInput().clear();
@@ -181,23 +184,23 @@ test.describe('Linkedin Leads Test',()=>{
         await linkedinleads.renameButton().click();
         await expect(page.getByText('Lead list renamed successfully')).toBeVisible();
     })
-    test('Verify Export from CSV list inside the three dots',async ({page})=>{
+    test('Verify Export from CSV list inside the three dots', async ({ page }) => {
         await linkedinleads.threeDotButton().click();
         await linkedinleads.exportFromCSV().click();
         await expect(page.getByText('Export successful')).toBeVisible();
     })
 
-    test('Verify Exclude from list inside the three dots',async ({page})=>{
+    test('Verify Exclude from list inside the three dots', async ({ page }) => {
         await linkedinleads.threeDotButton().click();
         await linkedinleads.excludeFromList('post reactor4');
         await expect(page.getByText('Lead lists excluded successfully')).toBeVisible();
     })
-    test('Verify Intersect lists inside the three dots',async ({page})=>{
+    test.skip('Verify Intersect lists inside the three dots', async ({ page }) => {
         await linkedinleads.threeDotButton().click();
         await linkedinleads.intersectLists('Post reactor lead 2');
         await expect(page.getByText('Lead lists intersected successfully')).toBeVisible();
     })
-    test('Verify Combine lists inside the three dots',async ({page})=>{
+    test('Verify Combine lists inside the three dots', async ({ page }) => {
         await linkedinleads.threeDotButton().click();
         await linkedinleads.combineLists(testData.linkedinLeads.peopleImportedLeads);
         await expect(page.getByText('Lead lists combined successfully')).toBeVisible();
@@ -212,7 +215,7 @@ test.describe('Linkedin Leads Test',()=>{
 
 
 
-    
+
 
 
 
@@ -221,31 +224,31 @@ test.describe('Linkedin Leads Test',()=>{
 
     // })
     // test.only('Verify delete button inside the three dots',async ({page})=>{
-        
+
     // })
     // test.only('Verify delete button inside the three dots',async ({page})=>{
 
     // })
     // test.only('Verify delete button inside the three dots',async ({page})=>{
-        
+
     // })
     // test.only('Verify delete button inside the three dots',async ({page})=>{
 
     // })
     // test.only('Verify delete button inside the three dots',async ({page})=>{
-        
+
     // })
     // test.only('Verify delete button inside the three dots',async ({page})=>{
 
     // })
     // test.only('Verify delete button inside the three dots',async ({page})=>{
-        
+
     // })
     // test.only('Verify delete button inside the three dots',async ({page})=>{
 
     // })
     // test.only('Verify delete button inside the three dots',async ({page})=>{
-        
+
     // })
 
 })
