@@ -5,7 +5,7 @@ import { LinkedinLeadsPage } from '../../pages/leadsPages/LinkedinLeadsPage';
 import testData from '../../testData/testData.json'
 
 
-test.describe.configure({mode:'serial'});
+test.describe.configure({mode:'default'});
 
 test.describe('Linkedin Leads Test',()=>{
     /** @type { NetworkPage } */
@@ -40,7 +40,7 @@ test.describe('Linkedin Leads Test',()=>{
         await network.addToListButton().click();
         await expect(network.newListPopUp()).toBeVisible();
     })
-    test.only('Save my network leads to new list',async ({page})=>{
+    test('Save my network leads to new list',async ({page})=>{
         await network.selectModeSwitch();
         await network.leadNameCheckBox().click();
         await network.addToListButton().click();

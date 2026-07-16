@@ -75,3 +75,5 @@ test.describe('Linkedin Leads Test',()=>{
         await expect(page.getByText('Please enter a valid URL')).toBeVisible();
     })
 })
+
+// npx playwright test tests/LinkedinPPostReactorsTest.spec.js --project chromium --headed
