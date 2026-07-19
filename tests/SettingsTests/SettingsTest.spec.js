@@ -3,7 +3,7 @@ import { LoginPage } from '../../pages/LoginPage';
 import { SettingsPage } from '../../pages/SettingsPages/SettingsPage';
 import testData from '../../testData/testData.json';
 
-test.describe.configure({mode:'serial'});
+test.describe.configure({mode:'default'});
 
 test.describe('Settings page test',()=>{
     /** @type {SettingsPage} */

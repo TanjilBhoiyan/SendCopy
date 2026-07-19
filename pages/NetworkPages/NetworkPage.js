@@ -15,6 +15,7 @@ export class NetworkPage {
         this.searchByKeywordLocator = '//input[@placeholder="Search by keywords"]';
         this.listNameInputBoxLocator = '//input[@placeholder="Enter lead name"]';
         this.ListNameConfirmButtonLocator = '//div[contains(text(),"Confirm")]';
+        this.allLeadsNameLocator='//div[@class="rounded-lg overflow-hidden border border-slate-200"]';
     }
     listNameConfirmButton() {
         return this.page.locator(this.ListNameConfirmButtonLocator);
@@ -22,10 +23,13 @@ export class NetworkPage {
     async listNameInputBox(newListName) {
         await this.page.locator(this.listNameInputBoxLocator).fill(newListName);
     }
+    allLeadsName(){
+        return this.page.locator(this.allLeadsNameLocator);
+    }
     async searchByKeyword(leads_name) {
+        await this.page.waitForLoadState('networkidle');
         await this.page.locator(this.searchByKeywordLocator).fill(leads_name);
         const SearchLeadName = await this.page.locator(this.leadsRowLocator).innerText();
-        console.log(SearchLeadName);
         return SearchLeadName;
     }
     newListPopUp() {

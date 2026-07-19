@@ -67,7 +67,8 @@ test.describe('Linkedin Leads Test',()=>{
     // })
     test('check the lead name after inter a lead name in search by keywords field',async ({page})=>{
         const leadName = await network.searchByKeyword(testData.networkTestData.searchByKeyword);
-        expect(leadName).toContain(testData.networkTestData.searchByKeyword);
+        console.log(leadName);
+        await expect(leadName).toContain(testData.networkTestData.searchByKeyword);
     })
 
 })
