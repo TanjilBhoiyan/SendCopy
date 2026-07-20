@@ -252,7 +252,8 @@ export class LinkedinAccountPage {
         await this.page.locator(this.previousButtonLocator).click();
     }
     async liatValueInput(LIAT) {
-        await this.page.locator(this.liatValueInputLocator).fill(LIAT);
+        //await this.page.locator(this.liatValueInputLocator).fill(LIAT);
+        await this.page.getByPlaceholder('Paste your "li_at" value here...').fill(LIAT);
     }
     async nextStepButton() {
         await this.page.locator(this.nextStepButtonLocator).click();

@@ -202,22 +202,9 @@ test.describe('Linkedin Leads Test', () => {
     })
     test('Verify Combine lists inside the three dots', async ({ page }) => {
         await linkedinleads.threeDotButton().click();
-        await linkedinleads.combineLists(testData.linkedinLeads.peopleImportedLeads);
+        await linkedinleads.combineLists(testData.linkedinLeads.companyImportedLeads);
         await expect(page.getByText('Lead lists combined successfully')).toBeVisible();
     })
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     // test.only('Verify Export from CSV inside the three dots',async ({page})=>{

@@ -2,7 +2,10 @@ import { test , expect } from '@playwright/test';
 import { LoginPage } from '../../pages/LoginPage';
 import { chatPage } from '../../pages/ChatsPages/messagePage';
 import testData from '../../testData/testData.json';
-test.describe.configure({mode:'serial'});
+
+
+
+test.describe.configure({mode:'default'});
 
 test.describe('Linkedin Leads Test',()=>{
     /** @type { chatPage } */
@@ -16,7 +19,7 @@ test.describe('Linkedin Leads Test',()=>{
 
         // create object for generate leads page
     })
-    test.only('If try to send greter than 3 mb individual picture',async ({page})=>{
+    test('If try to send greter than 3 mb individual picture',async ({page})=>{
         const filChooserPromise = page.waitForEvent('filechooser');
         await chatButton.attachment().click();
 

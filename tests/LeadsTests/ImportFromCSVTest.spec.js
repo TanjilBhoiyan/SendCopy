@@ -156,7 +156,7 @@ test.describe('Linkedin Leads Test',()=>{
         await expect(await imprtfromcsvpage.customVariableRow()).toHaveCount(1);
         // successfully import howar por leads importing validation kora hoy nai(Leads page e)
     })
-    test.only('Check custom variable block not showing after click on add custom variable delete button',async ({page})=>{
+    test('Check custom variable block not showing after click on add custom variable delete button',async ({page})=>{
         await linkedinleads.addLeadsButton();
         await generateLeads.importFromCSV().click();
         await generateLeads.continueButton().click();
@@ -203,3 +203,5 @@ test.describe('Linkedin Leads Test',()=>{
         // successfully import howar por leads importing validation kora hoy nai(Leads page e)
     })
 })
+
+//  npx playwright test tests/LeadsTests/impoportFromCSVTest.spec.js

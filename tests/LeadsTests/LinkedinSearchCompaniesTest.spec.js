@@ -46,7 +46,6 @@ test.describe('Linkedin Leads Test',()=>{
         await generateLeads.linkedinSearchCompanies().click();
         await generateLeads.continueButton().click();
         await linkedinsearchbar.listNameInputField('Companies lead 1');
-        await linkedinsearchbar.selectSenderName(testData.linkedinLeads.selectSenderName);
         await linkedinsearchcompanies.searchQueryInput('Chocolate');
         await page.waitForTimeout(2000);
         await linkedinsearchbar.startImportButton().click();
@@ -64,3 +63,5 @@ test.describe('Linkedin Leads Test',()=>{
         await expect(page.getByText('Keyword is required')).toBeVisible();       
     })
 })
+
+// npx playwright test tests/LinkedinSearchCompaniesTest.spec.js --project chromium --headed

@@ -96,41 +96,40 @@ test.describe('Linkedin Leads Test',()=>{
     //     await expect(page.getByText('Login Successfull')).toBeVisible();
     // })
 
-    //test kora lagbe
-    // test('Try to connect linkedin account using cookies connect without select country',async ({page})=>{
-    //     await linkedinAccount.connectAccountButton().click();
-    //     await linkedinAccount.connectCookiesButton();
-    //     await linkedinAccount.nextStepButton();
-    //     await linkedinAccount.liatValueInput(testData.linkedinAccountSPages.invalid_LIAT_token);
-    //     await linkedinAccount.inboxPrivacyConfiguration('Track and import all LinkedIn conversations');
-    //     await expect(linkedinAccount.connectAccount()).toBeDisabled();
-    // })
-    // test('Try to connect linkedin account using cookies connect without select conversation',async ({page})=>{
-    //     await linkedinAccount.connectAccountButton().click();
-    //     await linkedinAccount.connectCookiesButton();
-    //     await linkedinAccount.nextStepButton();
-    //     await linkedinAccount.liatValueInput(testData.linkedinAccountSPages.invalid_LIAT_token);
-    //     await linkedinAccount.selectCountry(testData.linkedinAccountSPages.country);
-    //     await expect(linkedinAccount.connectAccount()).toBeDisabled();
-    // })
-    // test('Try to connect linkedin account using cookies connect without LIAT value',async ({page})=>{
-    //     await linkedinAccount.connectAccountButton().click();
-    //     await linkedinAccount.connectCookiesButton();
-    //     await linkedinAccount.nextStepButton();
-    //     await linkedinAccount.inboxPrivacyConfiguration(testData.linkedinAccountSPages.select_conversation);
-    //     await linkedinAccount.selectCountry(testData.linkedinAccountSPages.country);
-    //     await expect(linkedinAccount.connectAccount()).toBeDisabled();
-    // })
-    // test.only('Try to connect linkedin account using cookies connect and using invalid cookies LIAT value',async ({page})=>{
-    //     await linkedinAccount.connectAccountButton().click();
-    //     await linkedinAccount.connectCookiesButton();
-    //     await linkedinAccount.nextStepButton();
-    //     await linkedinAccount.liatValueInput(testData.linkedinAccountSPages.invalid_LIAT_token);
-    //     await linkedinAccount.inboxPrivacyConfiguration(testData.linkedinAccountSPages.select_conversation);
-    //     await linkedinAccount.selectCountry(testData.linkedinAccountSPages.country);
-    //     await linkedinAccount.connectAccount().click();
-    //     await expect(page.getByText('invalid credential')).toBeVisible();
-    // })
+    test('Try to connect linkedin account using cookies connect without select country',async ({page})=>{
+        await linkedinAccount.connectAccountButton().click();
+        await linkedinAccount.connectCookiesButton();
+        await linkedinAccount.nextStepButton();
+        await linkedinAccount.liatValueInput(testData.linkedinAccountSPages.invalid_LIAT_token);
+        await linkedinAccount.inboxPrivacyConfiguration('Track and import all LinkedIn conversations');
+        await expect(linkedinAccount.connectAccount()).toBeDisabled();
+    })
+    test('Try to connect linkedin account using cookies connect without select conversation',async ({page})=>{
+        await linkedinAccount.connectAccountButton().click();
+        await linkedinAccount.connectCookiesButton();
+        await linkedinAccount.nextStepButton();
+        await linkedinAccount.liatValueInput(testData.linkedinAccountSPages.invalid_LIAT_token);
+        await linkedinAccount.selectCountry(testData.linkedinAccountSPages.country);
+        await expect(linkedinAccount.connectAccount()).toBeDisabled();
+    })
+    test('Try to connect linkedin account using cookies connect without LIAT value',async ({page})=>{
+        await linkedinAccount.connectAccountButton().click();
+        await linkedinAccount.connectCookiesButton();
+        await linkedinAccount.nextStepButton();
+        await linkedinAccount.inboxPrivacyConfiguration(testData.linkedinAccountSPages.select_conversation);
+        await linkedinAccount.selectCountry(testData.linkedinAccountSPages.country);
+        await expect(linkedinAccount.connectAccount()).toBeDisabled();
+    })
+    test('Try to connect linkedin account using cookies connect and using invalid cookies LIAT value',async ({page})=>{
+        await linkedinAccount.connectAccountButton().click();
+        await linkedinAccount.connectCookiesButton();
+        await linkedinAccount.nextStepButton();
+        await linkedinAccount.liatValueInput(testData.linkedinAccountSPages.invalid_LIAT_token);
+        await linkedinAccount.inboxPrivacyConfiguration(testData.linkedinAccountSPages.select_conversation);
+        await linkedinAccount.selectCountry(testData.linkedinAccountSPages.country);
+        await linkedinAccount.connectAccount().click();
+        await expect(page.getByText('invalid credential')).toBeVisible();
+    })
     test('Verify afte click on connect using cookies,Should appear Cookies connection instruction',async ({page})=>{
         await linkedinAccount.connectAccountButton().click();
         await linkedinAccount.connectCookiesButton();

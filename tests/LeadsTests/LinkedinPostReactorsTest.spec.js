@@ -76,4 +76,4 @@ test.describe('Linkedin Leads Test',()=>{
     })
 })
 
-// npx playwright test tests/LinkedinPPostReactorsTest.spec.js --project chromium --headed
+// npx playwright test tests/LinkedinPostReactorsTest.spec.js --project chromium --headed
