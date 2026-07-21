@@ -74,3 +74,6 @@ test.describe('Linkedin Leads Test',()=>{
 })
 
 // npx playwright test tests/NetworkTests/NetworkTest.spec.js --project chromium --debug
+
+
+// eta test case gulo fully ok 

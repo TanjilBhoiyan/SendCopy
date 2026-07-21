@@ -94,3 +94,5 @@ test.describe('Linkedin Leads Test',()=>{
 })
 
 // npx playwright test tests/CampaignsTests/CampaignTest.spec.js --project chromium --debug
+
+// ei file fully ok but aro kichu kaj korte hobe

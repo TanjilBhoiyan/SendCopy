@@ -165,6 +165,7 @@ test.describe('Linkedin Leads Test',()=>{
     });
 
     test('Check if select Linkedin Conversavtion from configure Inbox privacy,should showing all linkedin conversation in unibox', async ({ page }) => {
+        // jodi sender in campaign e thake tahole in campaign use kora lagbe 
         const connectedRow = await linkedinAccount.getLinkedinAccountStatus('Connected');
         console.log(connectedRow);
         if(connectedRow){
@@ -294,3 +295,6 @@ test.describe('Linkedin Leads Test',()=>{
 })
 
 // npx playwright test tests/LinkedinAccountsTests/LinkedinAccountsTest.spec.js --project chromium --debug
+
+
+// ei file fully ok

@@ -49,8 +49,12 @@
   "loginTestData":{
     "validEmail":"regressiontest5@gmail.com",
     "validPassword":"Shakil123@#?",
-    "invalidEmail":"thisIsInvalidEmail@gmail.com",
+    "invalidEmail":"thisIsInvalidEmail1@gmail.com",
     "invalidPassword":"thisisinvalidPassword",
     "signUptestEmail":"abcde@gmail.com"
+  },
+  "signupData":{
+    "newValidEmail":"newsignupemail8@gmail.com",
+    "newPassword":"Shakil123@#?"
   }
 }

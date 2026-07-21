@@ -8,7 +8,7 @@ import testData from '../../testData/testData.json'
 
 
 
-test.describe.configure({mode:'serial'});
+test.describe.configure({mode:'default'});
 
 test.describe('Linkedin Leads Test',()=>{
     /**@type {ImprtFromCSVPage} */
@@ -80,7 +80,7 @@ test.describe('Linkedin Leads Test',()=>{
         await imprtfromcsvpage.seventhDropdownItem(testData.linkedinLeads.about);
         await imprtfromcsvpage.eighthDropdownItem(testData.linkedinLeads.emailAddress);
         await imprtfromcsvpage.createEmptyList(testData.linkedinLeads.peopleImportedLeads);
-        await imprtfromcsvpage.importLeadsButton().click();
+        await imprtfromcsvpage.importLeadsButton().click({position:{x:7 ,y:20}});
         await expect(page.getByText('This field is required')).toBeVisible();
         await expect(page.getByText('Please map all required fields: LinkedIn Profile Url')).toBeVisible();
         // successfully import howar por leads importing validation kora hoy nai(Leads page e)
@@ -101,7 +101,7 @@ test.describe('Linkedin Leads Test',()=>{
         await imprtfromcsvpage.seventhDropdownItem(testData.linkedinLeads.about);
         await imprtfromcsvpage.eighthDropdownItem(testData.linkedinLeads.emailAddress);
         await imprtfromcsvpage.createEmptyList(testData.linkedinLeads.peopleImportedLeads);
-        await imprtfromcsvpage.importLeadsButton().click();
+        await imprtfromcsvpage.importLeadsButton().click({position:{x:7 ,y:20}});
         await expect(page.getByText('This field is required')).toBeVisible();
         await expect(page.getByText('Please map all required fields: First Name')).toBeVisible();
         // successfully import howar por leads importing validation kora hoy nai(Leads page e)
@@ -120,7 +120,7 @@ test.describe('Linkedin Leads Test',()=>{
         await imprtfromcsvpage.seventhDropdownItem(testData.linkedinLeads.about);
         await imprtfromcsvpage.eighthDropdownItem(testData.linkedinLeads.emailAddress);
         await imprtfromcsvpage.createEmptyList(testData.linkedinLeads.peopleImportedLeads);
-        await imprtfromcsvpage.importLeadsButton().click();
+        await imprtfromcsvpage.importLeadsButton().click({position:{x:7 ,y:20}});
         await expect(page.getByText('This field is required')).toBeVisible();
         await expect(page.getByText('Please map all required fields: Last Name')).toBeVisible();
         // successfully import howar por leads importing validation kora hoy nai(Leads page e)
@@ -198,10 +198,12 @@ test.describe('Linkedin Leads Test',()=>{
         await imprtfromcsvpage.sixthDropdownItem(testData.linkedinLeads.about);
         await imprtfromcsvpage.seventhDropdownItem(testData.linkedinLeads.emailAddress);
         await imprtfromcsvpage.createEmptyList(testData.linkedinLeads.companyImportedLeads);
-        await imprtfromcsvpage.importLeadsButton().click();
+        await imprtfromcsvpage.importLeadsButton().click({position:{x:7 ,y:20}});
         await expect(page.getByText('Success')).toBeVisible();
         // successfully import howar por leads importing validation kora hoy nai(Leads page e)
     })
 })
 
-//  npx playwright test tests/LeadsTests/impoportFromCSVTest.spec.js
+//  npx playwright test tests/LeadsTests/ImportFromCSVTest.spec.js --project chromium --headed
+
+// ei file fully ok 

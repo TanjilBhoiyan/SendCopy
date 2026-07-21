@@ -15,6 +15,7 @@ export class LoginPage {
         this.signupPasswordInputLocator=page.locator('[name="password"]');
         this.confirmPasswordInputLocator=page.getByLabel('Confirm Password');
         this.createAccountButtonLocator='div[class="flex items-center justify-center gap-2"] span';
+        this.checkBoxLocator='button[role="checkbox"]';
     }
 
     async gotoLoginPage(){
@@ -54,6 +55,9 @@ export class LoginPage {
     }
     async createAccount(){
         await this.page.locator(this.createAccountButtonLocator).click();
+    }
+    signUpPageCheckBox(){
+        return this.page.locator(this.checkBoxLocator);
     }
 
 }
