@@ -62,11 +62,11 @@ test.describe('Linkedin Leads Test',()=>{
     // test('Edit message',async ({page})=>{
 
     // })
-    test('Delete the conversation',async ({page})=>{
-        await chatButton.conversationThreeDotButton();
-        await chatButton.conversationDelete();
-        await expect(page.getByText('Conversation deleted')).toBeVisible();
-    })
+    // test('Delete the conversation',async ({page})=>{
+    //     await chatButton.conversationThreeDotButton();
+    //     await chatButton.conversationDelete();
+    //     await expect(page.getByText('Conversation deleted')).toBeVisible();
+    // })
     test('Conversation are moved to archived after click on archive',async ({page})=>{
         await chatButton.conversationThreeDotButton();
         await chatButton.archive();

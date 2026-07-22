@@ -191,5 +191,5 @@ test.describe('Login Tests', () => {
 
 
 
-//npx playwright test tests/LoginPageTest.spec.js --project chromium --headed
+//npx playwright test tests/LoginPageTest.spec.js --project Login --headed
 //npx playwright test --project=chromium --debug
