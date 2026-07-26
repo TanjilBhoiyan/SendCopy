@@ -6,13 +6,13 @@
   },
   "linkedinAccountSPages": {
     "wrong_linkedin_email": "xyzbhoiyan@gmail.com",
-    "invalid_email":"tanjilbhoiyan.com",
-    "valid_linkedin_email":"tanjilbhoiyan@gmail.com",
+    "invalid_email": "tanjilbhoiyan.com",
+    "valid_linkedin_email": "tanjilbhoiyan@gmail.com",
     "linkedin_account_password": "Tanjil123@#?",
-    "invalid_LIAT_token": "AQEDAT_CKTQBbb4XAAABnsXA0XoAAAGfnkeH5k0ApcXkAZJeDD3GDgTWGG2LhCpFBn6f8YL-iNAuGAA4-UG-A4piw6iIFpm9mVhZ_ycYdlF6P0dWyqcotHLjziTbTEwF77uHJ3K6QCB1a5nm8f1eWtwT",
+    "invalid_LIAT_token": "AQEDAT_CKTQBaUb3AAABn4mgNjMAAAGfray6M00AdDpzHylxBD-5ikLQMVYUQBplGpw6OQkojtPSKRbKvbaeG9vobRH2pmmdSLhcz2WicRjVALMOVWwmc8ZWO75XtSBwz71MzSY8xlo9kJdPpLvpQfaM",
     "country": "BD - Bangladesh",
     "without_proxy_country": "AR - Argentina",
-    "select_conversation":"Track and import all LinkedIn conversations"
+    "select_conversation": "Track and import all LinkedIn conversations"
   },
   "postReactorData": {
     "url": "https://www.linkedin.com/posts/...",
@@ -20,41 +20,41 @@
     "listName": "Post reactor lead 3"
   },
   "login": {
-    "email":"xyzbhoiyan@gmail.com"
+    "email": "xyzbhoiyan@gmail.com"
   },
-  "linkedinLeads":{
-    "searchLeads":"S",
-    "profileUrl":"Profile URL",
-    "location":"Location",
-    "companyURL":"Company URL",
-    "emailAddress":"Email Address",
-    "firstName":"First Name",
-    "lastName":"Last Name",
-    "headline":"Headline",
-    "companyName":"Company Name",
-    "company":"Company",
-    "about":"About",
-    "peopleImportedLeads":"people imported leads",
-    "companyImportedLeads":"Companies",
-    "event_leads":"Event_leads",
-    "selectSenderName":"Tanjil Bhoiyan",
-    "newListNameInput":"List name Renamed",
-    "NotUrl":"abcdefgh",
-    "listInputField":"automation lead1"
+  "linkedinLeads": {
+    "searchLeads": "S",
+    "profileUrl": "Profile URL",
+    "location": "Location",
+    "companyURL": "Company URL",
+    "emailAddress": "Email Address",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "headline": "Headline",
+    "companyName": "Company Name",
+    "company": "Company",
+    "about": "About",
+    "peopleImportedLeads": "people imported leads",
+    "companyImportedLeads": "Companies",
+    "event_leads": "Event_leads",
+    "selectSenderName": "Tanjil Bhoiyan",
+    "newListNameInput": "List name Renamed",
+    "NotUrl": "abcdefgh",
+    "listInputField": "automation lead1"
   },
-  "networkTestData":{
-    "searchByKeyword":"Panna",
-    "myNetworkList":"My Network List"
+  "networkTestData": {
+    "searchByKeyword": "Panna",
+    "myNetworkList": "My Network List"
   },
-  "loginTestData":{
-    "validEmail":"regressiontest5@gmail.com",
-    "validPassword":"Shakil123@#?",
-    "invalidEmail":"thisIsInvalidEmail1@gmail.com",
-    "invalidPassword":"thisisinvalidPassword",
-    "signUptestEmail":"abcde@gmail.com"
+  "loginTestData": {
+    "validEmail": "regressiontest5@gmail.com",
+    "validPassword": "Shakil123@#?",
+    "invalidEmail": "thisIsInvalidEmail1@gmail.com",
+    "invalidPassword": "thisisinvalidPassword",
+    "signUptestEmail": "abcde@gmail.com"
   },
-  "signupData":{
-    "newValidEmail":"newsignupemail8@gmail.com",
-    "newPassword":"Shakil123@#?"
+  "signupData": {
+    "newValidEmail": "testemail+1785043214251@gmail.com",
+    "newPassword": "Shakil123@#?"
   }
 }

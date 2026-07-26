@@ -1,6 +1,14 @@
+import fs from 'fs';
+import path from 'path';
+
+
 import { test, expect } from '@playwright/test'
 import { LoginPage } from '../pages/LoginPage'
 import testData from '../testData/testData.json'
+import { Client } from 'pg';
+import dotenv from 'dotenv';
+
+
 
 test.describe.configure({ mode: 'default' });
 
@@ -107,7 +115,12 @@ test.describe('Signup Tests', () => {
 
         // ১. JSON theke email-ta nao
         const baseEmail = testData.signupData.newValidEmail;
-        const uniqueEmail = baseEmail.replace('@', `+${Date.now()}@`);
+        const cleanEmail = baseEmail.replace(/\+.*(?=@)/, '');
+        const time = Date.now();
+        const uniqueEmail = cleanEmail.replace('@', `+${time}@`);
+
+
+
 
         await signup.firstName('Tanjil');
         await signup.lastName('Bhoiyan');
@@ -119,11 +132,45 @@ test.describe('Signup Tests', () => {
         await signup.createAccount();
         // Assertion
         await expect(page.getByText('Signup successful')).toBeVisible();
+
+
+        // ===============================
+        // Update newValidEmail in testData.json
+        // ===============================
+        const filePath = path.join(process.cwd(), 'testData', 'testData.json');
+        const jsonData = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+        // Update only email
+        jsonData.signupData.newValidEmail = uniqueEmail;
+        // Write back to file
+        fs.writeFileSync(
+            filePath,
+            JSON.stringify(jsonData, null, 2),
+            'utf8'
+        );
+
+
+        const client = new Client({
+            host: process.env.DB_HOST,
+            port: process.env.DB_PORT,
+            user: process.env.DB_USER,
+            password: process.env.DB_PASSWORD,
+            database: process.env.DB_NAME,
+            ssl: {
+                rejectUnauthorized: false
+            }
+        });
+
+        await client.connect();
+        const query = 'UPDATE users SET email_verified = true WHERE email = $1';
+        await client.query(query, [uniqueEmail]);
+        await client.end();
+        console.log(`DB verification complete for: ${uniqueEmail}`);
+
     });
     test('Try to signup using already used email', async ({ page }) => {
         await signup.firstName('Tanjil');
         await signup.lastName('Bhoiyan');
-        await signup.signUpEmail('abcde1@gmail.com');
+        await signup.signUpEmail(testData.signupData.newValidEmail);
         await signup.signUpPassword('Tanjil123@#?');
         await signup.confirmPassword('Tanjil123@#?');
         await signup.signUpPageCheckBox().click();
@@ -144,7 +191,7 @@ test.describe('Login Tests', () => {
         await login.gotoLoginPage();
     })
     test('Login test Using Valid email and valid password', async ({ page }) => {
-        await login.login(testData.loginTestData.validEmail, testData.loginTestData.validPassword);
+        await login.login(testData.signupData.newValidEmail, testData.signupData.newPassword);
         // Assertion: Successfully logged in
         await expect(page).toHaveURL('https://qaapp.sendcopy.ai/dashboard');
     })
@@ -191,5 +238,5 @@ test.describe('Login Tests', () => {
 
 
 
-//npx playwright test tests/LoginPageTest.spec.js --project Login --headed
+//npx playwright test tests/01_LoginPageTest.spec.js --project chromium --headed
 //npx playwright test --project=chromium --debug

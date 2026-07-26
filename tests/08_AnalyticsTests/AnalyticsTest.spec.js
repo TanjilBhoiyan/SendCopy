@@ -11,7 +11,7 @@
 //     test.beforeEach(async ({page})=>{
 //         const login = new LoginPage(page);
 //         await login.gotoLoginPage();
-//         await login.login(testData.loginTestData.validEmail,testData.loginTestData.validPassword);
+//         await login.login(testData.signupData.newValidEmail, testData.signupData.newPassword);
 //         analyticsButton = new AnalyticsPage(page);
 //         await analyticsButton.analyticsButton();
 

@@ -15,7 +15,7 @@ test.describe('Linkedin Leads Test',()=>{
     test.beforeEach(async ({page})=>{
         const login = new LoginPage(page);
         await login.gotoLoginPage();
-        await login.login(testData.loginTestData.validEmail , testData.loginTestData.validPassword);
+        await login.login(testData.signupData.newValidEmail, testData.signupData.newPassword);
         network = new NetworkPage(page);
         await network.networkButton();
     })

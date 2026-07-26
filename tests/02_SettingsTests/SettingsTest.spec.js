@@ -11,7 +11,7 @@ test.describe('Settings page test',()=>{
     test.beforeEach(async ({page})=>{
         const login = new LoginPage(page);
         await login.gotoLoginPage();
-        await login.login('shakilbhoiyan47@gmail.com','Shakil123@#?');
+        await login.login(testData.signupData.newValidEmail,testData.signupData.newPasswor);
         settings = new SettingsPage(page);
         await settings.settingsButton();
 
