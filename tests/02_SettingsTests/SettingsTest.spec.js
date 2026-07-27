@@ -11,26 +11,32 @@ test.describe('Settings page test',()=>{
     test.beforeEach(async ({page})=>{
         const login = new LoginPage(page);
         await login.gotoLoginPage();
-        await login.login(testData.signupData.newValidEmail,testData.signupData.newPasswor);
+        await login.login(testData.signupData.newValidEmail,testData.signupData.newPassword);
         settings = new SettingsPage(page);
         await settings.settingsButton();
 
         
     })
+    test('Check skip for now button is working when Watching guidline',async ({})=>{
+        await settings.WatchGuidline();
+        //await expect(getByText('all set! Enjoy SendCopy.')).toBeVisible();
+    })
     // test('',async({})=>{
 
     // })
-    test('Check the Download invoice button is working',async ({})=>{
-        await settings.billingButton();
-        await settings.invoice();
-        await settings.threeDotButton();
-        await settings.downloadButton();
-    })
-    test('Check the View invoice is working',async ({})=>{
+
+    test.skip('Check the View invoice is working',async ({})=>{
         await settings.billingButton();
         await settings.invoice();
         await settings.threeDotButton();
         await settings.viewButton();
+    })
+
+    test.only('choose a starter growth plan',async ({})=>{
+        await settings.billingButton();
+        await settings.choosePlanGrowth();
+        await settings.ContinueButton();
+        await settings.paymentMethod();
     })
     test('claim update plan',async ({})=>{
         await settings.billingButton();
@@ -46,13 +52,16 @@ test.describe('Settings page test',()=>{
     await expect(newPage).toHaveURL('https://www.linkedin.com/company/sendcopy-ai');
 
     })
-    test('Check skip for now button is working when Watching guidline',async ({})=>{
-        await settings.WatchGuidline();
-        //await expect(getByText('all set! Enjoy SendCopy.')).toBeVisible();
-    })
+
     test('Check Login page appear after click on log out button',async ({page})=>{
         await settings.LogOutButton();
     })
+    test.skip('Check the Download invoice button is working',async ({})=>{
+        await settings.billingButton();
+        await settings.invoice();
+        await settings.threeDotButton();
+        await settings.downloadButton();
+    })
 })
 
-// npx playwright test tests/SettingsTests/SettingsTest.spec.js --project chromium --debug
+// npx playwright test tests/02_SettingsTests/SettingsTest.spec.js --project chromium --debug

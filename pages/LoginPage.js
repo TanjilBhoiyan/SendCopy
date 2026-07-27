@@ -16,8 +16,11 @@ export class LoginPage {
         this.confirmPasswordInputLocator=page.getByLabel('Confirm Password');
         this.createAccountButtonLocator='div[class="flex items-center justify-center gap-2"] span';
         this.checkBoxLocator='button[role="checkbox"]';
+        this.skipForNowButtonLocator='//button[normalize-space()="Skip for now"]';
     }
-
+    async skipForNowButton(){
+        await this.page.locator(this.skipForNowButtonLocator).click();
+    }
     async gotoLoginPage(){
         await this.page.goto('https://qaapp.sendcopy.ai/');
     }

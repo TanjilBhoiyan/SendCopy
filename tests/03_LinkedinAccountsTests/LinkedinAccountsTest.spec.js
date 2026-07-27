@@ -294,7 +294,7 @@ test.describe('Linkedin Leads Test',()=>{
     // });
 })
 
-// npx playwright test tests/LinkedinAccountsTests/LinkedinAccountsTest.spec.js --project chromium --debug
+// npx playwright test tests/03_LinkedinAccountsTests/LinkedinAccountsTest.spec.js --project chromium --debug
 
 
 // ei file fully ok

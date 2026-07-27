@@ -194,6 +194,7 @@ test.describe('Login Tests', () => {
         await login.login(testData.signupData.newValidEmail, testData.signupData.newPassword);
         // Assertion: Successfully logged in
         await expect(page).toHaveURL('https://qaapp.sendcopy.ai/dashboard');
+        //await login.skipForNowButton();
     })
 
     test('Login test using Valid email and Invalid password', async ({ page }) => {
