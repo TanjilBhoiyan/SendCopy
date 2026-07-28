@@ -62,7 +62,7 @@ export class SettingsPage {
         await this.page.locator(this.LogoutButtonLocator).click();
     }
     async WatchGuidline() {
-        await this.page.locator(this.WatchGuidelineLocator).click();
+        //await this.page.locator(this.WatchGuidelineLocator).click();
         await this.page.locator(this.SkipForNowButtonLocator).click();
     }
 }

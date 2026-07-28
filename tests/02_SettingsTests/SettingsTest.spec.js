@@ -17,10 +17,10 @@ test.describe('Settings page test',()=>{
 
         
     })
-    test('Check skip for now button is working when Watching guidline',async ({})=>{
-        await settings.WatchGuidline();
-        //await expect(getByText('all set! Enjoy SendCopy.')).toBeVisible();
-    })
+    // test.only('Check skip for now button is working when Watching guidline',async ({})=>{
+    //     await settings.WatchGuidline();
+    //     //await expect(getByText('all set! Enjoy SendCopy.')).toBeVisible();
+    // })
     // test('',async({})=>{
 
     // })
@@ -32,11 +32,13 @@ test.describe('Settings page test',()=>{
         await settings.viewButton();
     })
 
-    test.only('choose a starter growth plan',async ({})=>{
+    test('choose a starter growth plan',async ({page})=>{
         await settings.billingButton();
         await settings.choosePlanGrowth();
         await settings.ContinueButton();
         await settings.paymentMethod();
+        //await settings.waitForLoadState('networkidle');
+        await expect(page.getByText("You're all set!")).toBeVisible({ timeout: 15000 });
     })
     test('claim update plan',async ({})=>{
         await settings.billingButton();

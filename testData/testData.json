@@ -9,7 +9,7 @@
     "invalid_email": "tanjilbhoiyan.com",
     "valid_linkedin_email": "tanjilbhoiyan@gmail.com",
     "linkedin_account_password": "Tanjil123@#?",
-    "invalid_LIAT_token": "AQEDAT_CKTQBaUb3AAABn4mgNjMAAAGfray6M00AdDpzHylxBD-5ikLQMVYUQBplGpw6OQkojtPSKRbKvbaeG9vobRH2pmmdSLhcz2WicRjVALMOVWwmc8ZWO75XtSBwz71MzSY8xlo9kJdPpLvpQfaM",
+    "invalid_LIAT_token": "ElfaZqKQGoWCRbxc4xf_Tt-IBt4Hei540Kpk--gXdW4tniYXOkkgyKFJS6H_I2s4TewNfeHrbtOAPdCVa7XUQZZnQjxfET7W7_fGLbJgYpWH",
     "country": "BD - Bangladesh",
     "without_proxy_country": "AR - Argentina",
     "select_conversation": "Track and import all LinkedIn conversations"
@@ -54,7 +54,7 @@
     "signUptestEmail": "abcde@gmail.com"
   },
   "signupData": {
-    "newValidEmail": "testemail+1785061011648@gmail.com",
+    "newValidEmail": "testemail+1785151630471@gmail.com",
     "newPassword": "Shakil123@#?"
   }
 }

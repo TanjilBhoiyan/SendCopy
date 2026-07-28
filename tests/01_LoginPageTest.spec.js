@@ -192,9 +192,10 @@ test.describe('Login Tests', () => {
     })
     test('Login test Using Valid email and valid password', async ({ page }) => {
         await login.login(testData.signupData.newValidEmail, testData.signupData.newPassword);
+        await login.skipForNowButton();
         // Assertion: Successfully logged in
         await expect(page).toHaveURL('https://qaapp.sendcopy.ai/dashboard');
-        //await login.skipForNowButton();
+        await expect(page.getByText('Master SendCopy in 2 Minutes')).toBeHidden();
     })
 
     test('Login test using Valid email and Invalid password', async ({ page }) => {

@@ -201,7 +201,7 @@ export class LinkedinAccountPage {
                 }
                 let currentValue = parseInt(currentText.trim());
                 console.log('Starting from: ' + currentValue);
-                
+
 
 
                 // slider er current position 
@@ -261,8 +261,19 @@ export class LinkedinAccountPage {
     async connectCookiesButton() {
         await this.page.locator(this.connectCookiesButtonLocator).click();
     }
-    connectAccount() {
-        return this.page.locator(this.connectAccountButtonLocator);
+    // async connectAccount() {
+    //     await this.page.locator(this.connectAccountButtonLocator).click();
+    //     //await this.page.waitForLoadState('networkidle');
+    //     //await this.page.waitForTimeout(10000);
+    // }
+    async connectAccount() {
+        await Promise.all([
+            this.page.waitForResponse(response =>
+                response.url().includes('/api/linkedin/accounts/connect-cookie') &&
+                response.ok()   // 200-299
+            ),
+            this.page.locator(this.connectAccountButtonLocator).click()
+        ]);
     }
 
     async selectCountry(country) {
