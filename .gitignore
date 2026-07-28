@@ -10,3 +10,7 @@ node_modules/
 .env
 .env.*
 !.env.example
+
+# Test data with credentials
+testData.json
+!testData.example.json
