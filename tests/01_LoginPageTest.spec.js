@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-
+import { chromium } from '@playwright/test';
 
 import { test, expect } from '@playwright/test'
 import { LoginPage } from '../pages/LoginPage'
@@ -191,11 +191,12 @@ test.describe('Login Tests', () => {
         await login.gotoLoginPage();
     })
     test('Login test Using Valid email and valid password', async ({ page }) => {
-        await login.login(testData.signupData.newValidEmail, testData.signupData.newPassword);
-        await login.skipForNowButton();
-        // Assertion: Successfully logged in
-        await expect(page).toHaveURL('https://qaapp.sendcopy.ai/dashboard');
-        await expect(page.getByText('Master SendCopy in 2 Minutes')).toBeHidden();
+        const filePath = path.join(process.cwd(), 'testData', 'testData.json');
+        const freshData = JSON.parse(fs.readFileSync(filePath, 'utf8'));
+
+        await login.login(freshData.signupData.newValidEmail, freshData.signupData.newPassword);
+        await login.skipForNowButton().click();
+        await expect(page.getByText("You're all set! Enjoy SendCopy.")).toBeVisible();
     })
 
     test('Login test using Valid email and Invalid password', async ({ page }) => {

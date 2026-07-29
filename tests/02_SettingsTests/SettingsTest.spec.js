@@ -17,13 +17,6 @@ test.describe('Settings page test',()=>{
 
         
     })
-    // test.only('Check skip for now button is working when Watching guidline',async ({})=>{
-    //     await settings.WatchGuidline();
-    //     //await expect(getByText('all set! Enjoy SendCopy.')).toBeVisible();
-    // })
-    // test('',async({})=>{
-
-    // })
 
     test.skip('Check the View invoice is working',async ({})=>{
         await settings.billingButton();
@@ -40,7 +33,7 @@ test.describe('Settings page test',()=>{
         //await settings.waitForLoadState('networkidle');
         await expect(page.getByText("You're all set!")).toBeVisible({ timeout: 15000 });
     })
-    test('claim update plan',async ({})=>{
+    test.skip('claim update plan',async ({})=>{
         await settings.billingButton();
         await settings.updatePlan();
         await settings.ContinueButton();

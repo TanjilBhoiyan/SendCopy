@@ -130,16 +130,33 @@ test.describe('Linkedin Leads Test',()=>{
         await linkedinAccount.connectAccount().click();
         await expect(page.getByText('invalid credential')).toBeVisible();
     })
-    test.only('Check successfull connect linkedin account using cookies connect and using valid cookies LIAT value',async ({page})=>{
+
+
+
+
+
+
+
+    test('Check successfull connect linkedin account using cookies connect and using valid cookies LIAT value',async ({page})=>{
         await linkedinAccount.connectAccountButton().click();
         await linkedinAccount.connectCookiesButton();
         await linkedinAccount.nextStepButton();
         await linkedinAccount.liatValueInput(process.env.valid_LIAT_token);
         await linkedinAccount.inboxPrivacyConfiguration(testData.linkedinAccountSPages.select_conversation);
         await linkedinAccount.selectCountry(testData.linkedinAccountSPages.country);
-        await linkedinAccount.connectAccount();
+        await linkedinAccount.connectAccountCookie();
         await expect(page.getByText('LinkedIn account connected successfully')).toBeVisible();
     })
+
+
+
+
+
+
+
+
+
+
     test('Verify afte click on connect using cookies,Should appear Cookies connection instruction',async ({page})=>{
         await linkedinAccount.connectAccountButton().click();
         await linkedinAccount.connectCookiesButton();

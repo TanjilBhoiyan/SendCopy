@@ -261,12 +261,12 @@ export class LinkedinAccountPage {
     async connectCookiesButton() {
         await this.page.locator(this.connectCookiesButtonLocator).click();
     }
-    // async connectAccount() {
-    //     await this.page.locator(this.connectAccountButtonLocator).click();
-    //     //await this.page.waitForLoadState('networkidle');
-    //     //await this.page.waitForTimeout(10000);
-    // }
-    async connectAccount() {
+    connectAccount() {
+        return this.page.locator(this.connectAccountButtonLocator);
+        //await this.page.waitForLoadState('networkidle');
+        //await this.page.waitForTimeout(10000);
+    }
+    async connectAccountCookie() {
         await Promise.all([
             this.page.waitForResponse(response =>
                 response.url().includes('/api/linkedin/accounts/connect-cookie') &&

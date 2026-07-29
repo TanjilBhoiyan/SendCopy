@@ -18,9 +18,20 @@ export class LoginPage {
         this.checkBoxLocator = 'button[role="checkbox"]';
         this.skipForNowButtonLocator = '//button[normalize-space()="Skip for now"]';
     }
-    async skipForNowButton() {
-        await this.page.getByRole('button', { name: 'Get Started with SendCopy' }).click();
+    skipForNowButton() {
+        //await this.page.waitForLoadState('domcontentloaded');
+        //await this.page.waitForTimeout(1000);
+        //await this.page.getByRole('button', { name: 'Get Started with SendCopy' }).click();
+        return this.page.locator(this.skipForNowButtonLocator);
     }
+//     async skipForNowButton() {
+//     const skipButton = this.page.getByRole('button', { name: 'Skip for now' });
+
+//     await expect(skipButton).toBeVisible({ timeout: 30000 });
+//     await expect(skipButton).toBeEnabled();
+
+//     await skipButton.click();
+// }
     async gotoLoginPage() {
         await this.page.goto('https://qaapp.sendcopy.ai/');
     }
@@ -59,6 +70,15 @@ export class LoginPage {
     async createAccount() {
         await this.page.locator(this.createAccountButtonLocator).click();
     }
+    // async createAccount() {
+    //     await Promise.all([
+    //         this.page.waitForResponse(response =>
+    //             response.url().includes('api/auth/signup') &&
+    //             response.ok()   // 200-299
+    //         ),
+    //         this.page.locator(this.connectAccountButtonLocator).click()
+    //     ]);
+    // }
     signUpPageCheckBox() {
         return this.page.locator(this.checkBoxLocator);
     }
