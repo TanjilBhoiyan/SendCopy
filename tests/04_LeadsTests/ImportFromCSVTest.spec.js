@@ -204,6 +204,6 @@ test.describe('Linkedin Leads Test',()=>{
     })
 })
 
-//  npx playwright test tests/LeadsTests/ImportFromCSVTest.spec.js --project chromium --headed
+//  npx playwright test tests/04_LeadsTests/ImportFromCSVTest.spec.js --project chromium --headed
 
 // ei file fully ok 

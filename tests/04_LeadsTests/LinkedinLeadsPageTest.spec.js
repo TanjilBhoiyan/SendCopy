@@ -240,4 +240,4 @@ test.describe('Linkedin Leads Test', () => {
 
 })
 
-// npx playwright test tests/LinkedinLeadsPageTest.spec.js --project chromium --headed
+// npx playwright test tests/04_LeadsTests/LinkedinLeadsPageTest.spec.js --project chromium --headed

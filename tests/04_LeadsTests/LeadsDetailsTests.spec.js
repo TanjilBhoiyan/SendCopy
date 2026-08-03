@@ -50,6 +50,6 @@ test.describe('Linkedin Leads Test',()=>{
 
 })
 
-//  npx playwright test tests/LeadsDetailsTests.spec.js --project chromium --headed
+//  npx playwright test tests/04_LeadsTests/LeadsDetailsTests.spec.js --project chromium --headed
 
 // ei file ta fully ok
